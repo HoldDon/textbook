@@ -5,6 +5,7 @@
     * [排序](chapter/leetcode/sort.md)
     * [回溯算法](chapter/leetcode/backtracking.md)
     * [树算法](chapter/leetcode/tree.md)
+    * [抽样算法](chapter/leetcode/randompick.md)
     * [回文字符串](chapter/leetcode/palindrome.md)
 * 多线程
     * [synchronized](chapter/thread/synchronized.md)
