@@ -67,7 +67,27 @@ public boolean recur(TreeNode left, TreeNode right) {
     return recur(left.right, right.left) && recur(right.left, left.right);
 }
 ```
-
+#### 寻找最近公共祖先节点
+递归不端判断左右子节点是否满足
+```java
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        //左递归
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        //右递归
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        //左右都没找到
+        return root;
+    }
+```
 
 #### 前缀树
 将一组前缀，通过多节点树的形式构建出来，每个节点的子节点集合可以通过数组(char值作为索引)、哈希表(char作为key)，节点保存完整前缀，如果只是路径的话存空值。
