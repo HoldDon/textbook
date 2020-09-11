@@ -1,19 +1,26 @@
 # 回溯算法
 
 ### 核心框架
-```
-result = []  
-def backtrack(路径, 选择列表):  
-    if 满足结束条件:
+```java
+result = [];  
+void backtrack(路径, 选择列表){
+    //这里可以做一些剪枝操作
+    
+    if 满足结束条件{
         result.add(路径)
-        return
+        return;
+     }
 
-    for 选择 in 选择列表:
+    for( 选择 in 选择列表){
+        //这里也可以做一些剪枝操作
+        
         做选择
         backtrack(路径, 选择列表)
         撤销选择
+    }
+}
 ```
-***  
+***
 #### 已刷题目列表
 
 * [46.全排列](https://leetcode-cn.com/problems/permutations/)
