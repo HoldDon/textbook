@@ -38,3 +38,30 @@
 #### 练手
 * [剑指 Offer 24. 反转链表](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/)
 
+
+
+#### 快慢指针
+
+```java
+    public int fastToSlow(ListNode head, int k) {
+        ListNode fast = head;
+        ListNode slow = head;
+        //快指针先走k步，慢指针再走，适用于取链表间隔
+        while (fast.next != null) {
+            fast = fast.next;
+            if (k > 1) {
+                k--;
+            } else {
+                slow = slow.next;
+            }
+        }
+        return slow.val;
+    }
+```
+
+
+
+[返回倒数第 k 个节点](https://leetcode-cn.com/problems/kth-node-from-end-of-list-lcci/)
+
+
+
