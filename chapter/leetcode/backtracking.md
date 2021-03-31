@@ -25,3 +25,5 @@ void backtrack(路径, 选择列表){
 
 * [46.全排列](https://leetcode-cn.com/problems/permutations/)
 * [17.电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)
+* [78.子集](https://leetcode-cn.com/problems/subsets/)
+* [90.子集](https://leetcode-cn.com/problems/subsets-ii/)
