@@ -267,5 +267,165 @@ Loki支持[JSON](#json), [logfmt](#logfmt), [pattern](#pattern), [regexp](#regex
    "ua" => "curl/7.68.0"
    ```
 
- 
+#####  logfmt
+
+ **logfmt** 解析器可以使用 `| logfmt` 来从 [logfmt](https://brandur.org/logfmt) 格式的日志行中提取labels
+
+例如，下面的日志行内容：
+
+```logfmt
+at=info method=GET path=/ host=grafana.net fwd="124.133.124.161" service=8ms status=200
+```
+
+将被解析成如下的格式
+
+```kv
+"at" => "info"
+"method" => "GET"
+"path" => "/"
+"host" => "grafana.net"
+"fwd" => "124.133.124.161"
+"service" => "8ms"
+"status" => "200"
+```
+
+##### Pattern
+
+**此匹配器处于测试阶段**
+
+模式匹配器可以通过定义一个pattern表达式 (`| pattern "<pattern-expression>"`) 以便从日志行中显式提取字段。 表达式需符合日志行的结构。
+
+下面是一个NGINX的日志内容：
+
+```log
+0.191.12.2 - - [10/Jun/2021:09:14:29 +0000] "GET /api/plugins/versioncheck HTTP/1.1" 200 2 "-" "Go-http-client/2.0" "13.76.247.102, 34.120.177.193" "TLSv1.2" "US" ""
+```
+
+此日志可以被如下的表达式解析：
+
+```
+<ip> - - <_> "<method> <uri> <_>" <status> <size> <_> "<agent>" <_>
+```
+
+并将提取到如下内容：
+
+```kv
+"ip" => "0.191.12.2"
+"method" => "GET"
+"uri" => "/api/plugins/versioncheck"
+"status" => "200"
+"size" => "2"
+"agent" => "Go-http-client/2.0"
+```
+
+一个Pattern包含占位符和常量
+
+占位符是一个被`<` 和 `>`包裹的字段命，`<example>` 就表示字段`example`。无需命名的占位符可以用 `<_>`来表示，并将跳过匹配的内容。
+
+占位符将会在日志行的开头或者常量之前开始匹配，并将在日志行结束或者下一个常量前结束。一旦有一个占位符不匹配，pattern解析器将会停止。
+
+常量是一系列的UTF-8字符，包括空格符。
+
+pattern表达式默认是从日志行的开头开始匹配的。如果表达式以常量开头，那么日志内容的开头必须要有相同的常量。在表达式开头使用e`<_>` 可以是表达式从日志行的开头开始匹配。
+
+以如下日志为例：
+
+```log
+level=debug ts=2021-06-10T09:24:13.472094048Z caller=logging.go:66 traceID=0568b66ad2d9294c msg="POST /loki/api/v1/push (204) 16.652862ms"
+```
+
+为了匹配 `msg="`，可以使用如下表达式
+
+```pattern
+<_> msg="<method> <path> (<status>) <latency>"
+```
+
+以下情况下的pattern表达式是不合法的：
+
+- 未包含任何占位符
+- 两个相邻的占位符未被空格分开
+
+##### regexp
+
+ logfmt 和json解析器会提取所有值而且没有参数。但是 **regexp** 解析器可以指定一个参数，并使用[Golang](https://golang.org/) [RE2 syntax](https://github.com/google/re2/wiki/Syntax)来执行表达式。
+
+正则表达式必须包含至少一个命名的子匹配 (例如 `(?P<name>re)`)，每个子匹配被提取到不同的label。
+
+正则解析器 `| regexp "(?P<method>\\w+) (?P<path>[\\w|/]+) \\((?P<status>\\d+?)\\) (?P<duration>.*)"` 会从下面的日志中
+
+```log
+POST /api/prom/api/v1/query_range (200) 1.5s
+```
+
+提取到如下labels：
+
+```kv
+"method" => "POST"
+"path" => "/api/prom/api/v1/query_range"
+"status" => "200"
+"duration" => "1.5s"
+```
+
+##### unpack
+
+`unpack` 解析器将会解析json格式的日志行， 并拆解所有的属性。 **一个特殊的属性 `_entry` 将会替换掉原始的日志内容**。
+
+示例， 使用 `| unpack`会将如下的日志内容 
+
+```json
+{
+  "container": "myapp",
+  "pod": "pod-3223f",
+  "_entry": "original log message"
+}
+```
+
+提取出 `container` 和 `pod` l两个abels并且 `original log message` 会成为新的日志内容。
+
+#### <span id="label-filter-expression">Label Filter Expression</span>
+
+label过滤器表达式可以用原始的和提取出的label来过滤日志行。它包含多个判断式。
+
+一个判断式包含一个label属性，一个操作符，还有一个用于匹配label的值。
+
+判断式： `cluster="namespace"`中，cluster 是label的名称，操作符 `=` ，“namespace”就是要匹配的值。label名必须要在操作符的左边。
+
+我们支持多种值类型，并且可以根据输入值进行推断：
+
+- **String** 字符类型可以表示成这两种形式 `"200"` 或者 ``us-central1``。
+- **Duration** 时间小大，可选择带上单位后缀，例如： “300ms”, “1.5h” or “2h45m”。合法的时间单位有： “ns”, “us” (or “µs”), “ms”, “s”, “m”, “h”
+- **Number** 64位浮点数，例如：`250`, `89.923`
+- **Bytes** 字节数大小，可选择带上单位后缀，例如： “42MB”, “1.5Kib” or “20b”。合法的字节单位包括： “b”, “kib”, “kb”, “mib”, “mb”, “gib”, “gb”, “tib”, “tb”, “pib”, “pb”, “eib”, “eb”。
+
+跟日志流选择器一样，String类型可以使用这四个操作符 (`=`,`!=`,`=~`,`!~`)。
+
+对于Duration，Number 和 Bytes类型，则会先强制转换label值以便进行比较，并且支持以下比较类型 ：
+
+- `==` 或者 `=` 相等 
+- `!=` 不相等
+- `>` 和 `>=` 大于和大于等于
+- `<` 和 `<=` 小于和小于等于
+
+例如： `logfmt | duration > 1m and bytes_consumed > 20MB`
+
+如果出现label值失效，日志行将不会过来，并且一个名为`__error__` 的label将会被添加进来。
+
+你可以使用`and`和`or`将多个判断式串联起来，其中`and`可以使用空格，逗号，或者竖线来表达。label过滤器可以放在执行管道的任何地方。
+
+这意味着下面四个表达式是完全相同的：
+
+```logql
+| duration >= 20ms or size == 20kb and method!~"2.."
+| duration >= 20ms or size == 20kb | method!~"2.."
+| duration >= 20ms or size == 20kb , method!~"2.."
+| duration >= 20ms or size == 20kb  method!~"2.."
+```
+
+默认来说，多个判断式的优先级是从右往左。你可以用括号包裹判断式，以改变优先级顺序。
+
+#### <span id="line-format-expression">Line Format Expression</span>
+
+日志行格式表达式可以重写日志行内容，使用的是golang的 [text/template](https://golang.org/pkg/text/template/) 格式。传入一个模板格式作为参数 `| line_format "{{.label_name}}"`。所有的labes会作为参数注入到模板中，并使用`{{.label_name}}` 表现出来。
+
+
 
