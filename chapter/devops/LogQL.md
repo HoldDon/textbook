@@ -84,7 +84,6 @@ LogQL 查询有两种类型:
 - [Label过滤表达式(Label Filter Expression)](#label-filter-expression)
 - [日志行格式化表达式(Line Format Expression)](#line-format-expression)
 - [Label格式化表达式(Labels Format Expression)](#labels-format-expression)
-- [展开表达式(Unwrap Expression)](#unwrapped-range-aggregations)
 
 #### <span id='line-filter-expression'>Line Filter Expression</span>
 
@@ -427,5 +426,37 @@ label过滤器表达式可以用原始的和提取出的label来过滤日志行�
 
 日志行格式表达式可以重写日志行内容，使用的是golang的 [text/template](https://golang.org/pkg/text/template/) 格式。传入一个模板格式作为参数 `| line_format "{{.label_name}}"`。所有的labes会作为参数注入到模板中，并使用`{{.label_name}}` 表现出来。
 
+下面的代码，将会提取和重写日志行使得其只包含query和duration标签。
 
+```logql
+{container="frontend"} | logfmt | line_format "{{.query}} {{.duration}}"
+```
+
+使用双引号或者反引号 `` `{{.label_name}}` `` 可以用来直接显示字符。
+
+`line_format` 也支持 `math` 函数
+
+如果我们有如下的labels `ip=1.1.1.1`, `status=200` and `duration=3000`(ms)，那么我们可以把duration除以1000以得到秒值。
+
+```logql
+{container="frontend"} | logfmt | line_format "{{.ip}} {{.status}} {{div .duration 1000}}"
+```
+
+上述查询会得到日志行： `1.1.1.1 200 3`
+
+#### <span id='labels-format-expression'>Labels Format Expression</span>
+
+`| label_format` 表达式可以重命名、修改、添加labels。它的参数是由一系列用逗号分割的等式组成。
+
+如果等号两边都是label标签名，那么则会将后面的重命名为前面的值。 `dst=src`，scr会被重命名为dst。
+
+等号左边的可以是一个模板字符串（用双引号或者反引号）， `dst="{{.status}} {{.query}}"`这样的表达式，dst的值将会知模板执行后的结果。
+
+上面两个案例中，当目标label不存在时，会直接创建。
+
+重命名操作 `dst=src` 将在 `dst` 标签完成映射时，把 `src` 标签删除掉。但是如果使用模板字符串的话， `dst="{{.src}}"` 两个label都会得到保留。
+
+## 注意点：
+
+1. lable的键值对数量不宜过大，否则loki会吃不消。建议选择取值范围小的属性作为lable，例如http的statusCode或者请求类型(POST、GET)。不要将ip地址、方法名作为lable，因为所有的lable键值对会呈指数级增长。
 
