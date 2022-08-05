@@ -46,7 +46,7 @@
 
 ### Dockerfile文件
 
-```dockerfile
+```docker 
 FROM ubuntu
 COPY hom* /mydir/
 VOLUME ["<路径1>", "<路径2>"...]
