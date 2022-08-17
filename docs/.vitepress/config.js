@@ -8,10 +8,16 @@ export default {
         nav: [
             { text: 'LeetCode', link: '/chapter/leetcode/' },
             { text: '多线程', link: '/chapter/thread/synchronized' },
-            { text: '数据库', link: '/chapter/database/mysql' },
+            {
+                text: '数据库', items: [
+                    { text: 'mysql', link: '/chapter/database/mysql' },
+                    { text: 'redis', link: '/chapter/database/redis' },
+                ]
+            },
             {
                 text: 'DevOps', items: [
                     { text: 'docker', link: '/chapter/devops/docker' },
+                    { text: '其他', link: '/chapter/devops/other' },
                 ]
             },
         ],
