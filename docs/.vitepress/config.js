@@ -1,13 +1,12 @@
 export default {
-    title: 'hoe-book',
-    description: '个人日志',
+    title: '个人日志',
     base:"/textbook/",
     themeConfig: {
         siteTitle: "个人日志",
         logo: "/favicon.ico",
         nav: [
-            { text: 'LeetCode', link: '/chapter/leetcode/' },
-            { text: '多线程', link: '/chapter/thread/synchronized' },
+            { text: '编程', link: '/chapter/code/' },
+            // { text: '数学', link: '/chapter/math/linearAlgebra' },
             {
                 text: '数据库', items: [
                     { text: 'mysql', link: '/chapter/database/mysql' },
@@ -22,36 +21,45 @@ export default {
             },
         ],
         sidebar: {
-            '/chapter/leetcode/': [
+            '/chapter/code/': [
                 {
                     text: "算法",
                     items: [
                         {
                             text: '排序',
-                            link: "/chapter/leetcode/sort",
+                            link: "/chapter/code/leetcode/sort",
                         },
                         {
                             text: '回溯算法',
-                            link: "/chapter/leetcode/backtracking",
+                            link: "/chapter/code/leetcode/backtracking",
                         },
                         {
                             text: '树算法',
-                            link: "/chapter/leetcode/tree",
+                            link: "/chapter/code/leetcode/tree",
                         },
                         {
                             text: '链表算法',
-                            link: "/chapter/leetcode/listnode",
+                            link: "/chapter/code/leetcode/listnode",
                         },
                         {
                             text: '字符串',
-                            link: "/chapter/leetcode/string",
+                            link: "/chapter/code/leetcode/string",
                         },
                         {
                             text: '其他',
-                            link: "/chapter/leetcode/other",
+                            link: "/chapter/code/leetcode/other",
                         },
                     ],
                 },
+                {
+                    text:"多线程",
+                    items:[
+                        {
+                            text: 'synchronized',
+                            link: "/chapter/code/thread/synchronized",
+                        },
+                    ]
+                }
             ],
         }
     },
