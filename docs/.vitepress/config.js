@@ -1,6 +1,7 @@
 export default {
     title: 'hoe-book',
     description: '个人日志',
+    base:"/textbook/",
     themeConfig: {
         siteTitle: "个人日志",
         logo: "/favicon.ico",
