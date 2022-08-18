@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,a as l}from"./app.573ef846.js";const i=JSON.parse('{"title":"\u6811\u76F8\u5173\u7B97\u6CD5","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/leetcode/tree.md"}'),p={name:"chapter/leetcode/tree.md"},o=l("",18),e=[o];function r(t,D,c,y,A,F){return a(),n("div",null,e)}const d=s(p,[["render",r]]);export{i as __pageData,d as default};
