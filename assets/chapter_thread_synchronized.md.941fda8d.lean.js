@@ -1,0 +1,4 @@
+import{_ as n,c as t,o as r,b as e,d as o}from"./app.573ef846.js";const y=JSON.parse('{"title":"synchronized","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/thread/synchronized.md"}'),a={name:"chapter/thread/synchronized.md"},s=e("h1",{id:"synchronized",tabindex:"-1"},[o("synchronized "),e("a",{class:"header-anchor",href:"#synchronized","aria-hidden":"true"},"#")],-1),c=e("pre",null,[e("code",null,`\u6838\u5FC3\u5C31\u662F\u4E89\u593Amonitor\u5BF9\u8C61\u7684\u6240\u6709\u6743,monitorenter\u8FDB\u5165\u6570+1,monitorexit\u8FDB\u5165\u6570-1,\u76F4\u5230\u4E3A0\u3002\u624D\u53EF\u4EE5\u88AB\u5176\u4ED6\u7EBF\u7A0B\u6301\u6709\u3002  
+
+synchronized\u65B9\u6CD5\u4E0A\u4F1A\u6709\u4E00\u4E2A\u7279\u6B8A\u7684\u6807\u5FD7\u4F4DACC_SYNCHRONIZED\uFF0C\u4F1A\u9690\u5F0F\u8C03\u7528\u4E0A\u8FF0\u4E24\u4E2A\u6307\u4EE4
+`)],-1),d=[s,c];function i(h,_,p,l,m,f){return r(),t("div",null,d)}const z=n(a,[["render",i]]);export{y as __pageData,z as default};
