@@ -58,6 +58,10 @@ export default {
                             text: 'synchronized',
                             link: "/chapter/code/thread/synchronized",
                         },
+                        {
+                            text: 'CompletableFuture',
+                            link: "/chapter/code/thread/CompletableFuture",
+                        },
                     ]
                 }
             ],
