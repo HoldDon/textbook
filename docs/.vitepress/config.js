@@ -1,11 +1,16 @@
 export default {
     title: '个人日志',
-    base:"/textbook/",
+    base: "/textbook/",
     themeConfig: {
         siteTitle: "个人日志",
         logo: "/favicon.ico",
         nav: [
-            { text: '编程', link: '/chapter/code/' },
+            {
+                text: '编程', items: [
+                    { text: "知识点", link: '/chapter/code/' },
+                    { text: "问题记录", link: '/chapter/note' }
+                ]
+            },
             // { text: '数学', link: '/chapter/math/linearAlgebra' },
             {
                 text: '数据库', items: [
@@ -16,7 +21,6 @@ export default {
             {
                 text: 'DevOps', items: [
                     { text: 'docker', link: '/chapter/devops/docker' },
-                    { text: '其他', link: '/chapter/devops/other' },
                 ]
             },
         ],
@@ -52,8 +56,8 @@ export default {
                     ],
                 },
                 {
-                    text:"多线程",
-                    items:[
+                    text: "多线程",
+                    items: [
                         {
                             text: 'synchronized',
                             link: "/chapter/code/thread/synchronized",
