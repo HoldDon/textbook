@@ -30,6 +30,8 @@ TomcatServletWebServerFactory webServerFactory() {
 ```
 
 ## Minio与SpringBoot关于okhttp3的版本问题
-**描述：**启动时，出现NoClassDefFoundError报错。
-**原因：**Minio与SpringBoot 所以来的okhttp3版本不一致，导致初始化错误。
+**描述：** 启动时，出现NoClassDefFoundError报错。  
+**原因：** Minio与SpringBoot 所以来的okhttp3版本不一致，导致初始化错误。  
 **解决办法：** 在pom中指定与Minio依赖一直的okhttp3版本号。
+
+![An image](/lock-mind.jpg)
