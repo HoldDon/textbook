@@ -29,6 +29,26 @@ TomcatServletWebServerFactory webServerFactory() {
 </dependency>
 ```
 
+## Flowable指定DataSource
+
+**原因：** 有时业务库和流程库不在一起，需要隔离开。  
+**解决办法：** 使用EngineConfigurationConfigurer，更改默认配置。
+ 
+```java
+@Bean
+public EngineConfigurationConfigurer<SpringProcessEngineConfiguration> changeDataSource() {
+    DataSource dataSource = DataSourceBuilder
+            .create()
+            .url("url")
+            .username("username")
+            .password("password")
+            .type(DataSource.class)
+            .driverClassName("driverClassName")
+            .build();
+    return (configuration -> configuration.setDataSource(dataSource));
+}
+```
+
 ## Minio与SpringBoot关于okhttp3的版本问题
 **描述：** 启动时，出现NoClassDefFoundError报错。  
 **原因：** Minio与SpringBoot 所以来的okhttp3版本不一致，导致初始化错误。  
