@@ -1,1 +1,0 @@
-import{_ as t,c as r,o as d,b as e}from"./app.80aae63d.js";const _=JSON.parse('{"title":"REDIS","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/database/redis.md"}'),a={name:"chapter/database/redis.md"},o=e("",11),s=[o];function n(h,i,g,l,c,y){return d(),r("div",null,s)}const k=t(a,[["render",n]]);export{_ as __pageData,k as default};

@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,b as l}from"./app.a6c93100.js";const C=JSON.parse('{"title":"回溯算法","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/code/leetcode/backtracking.md"}'),e={name:"chapter/code/leetcode/backtracking.md"},p=l("",6),o=[p];function t(r,c,i,D,y,A){return n(),a("div",null,o)}const d=s(e,[["render",t]]);export{C as __pageData,d as default};

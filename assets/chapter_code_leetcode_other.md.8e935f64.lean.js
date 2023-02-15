@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,b as l}from"./app.a6c93100.js";const i=JSON.parse('{"title":"其他算法","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/code/leetcode/other.md"}'),p={name:"chapter/code/leetcode/other.md"},o=l("",13),e=[o];function t(c,r,D,y,C,A){return a(),n("div",null,e)}const d=s(p,[["render",t]]);export{i as __pageData,d as default};
