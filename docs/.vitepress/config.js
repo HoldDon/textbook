@@ -7,7 +7,7 @@ export default {
         nav: [
             {
                 text: '编程', items: [
-                    { text: "知识点", link: '/chapter/code/' },
+                    { text: "知识点", link: '/chapter/code/leetcode/sort' },
                     { text: "问题记录", link: '/chapter/note' }
                 ]
             },
