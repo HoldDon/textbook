@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,b as l}from"./app.a6c93100.js";const i=JSON.parse('{"title":"树相关算法","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/code/leetcode/tree.md"}'),p={name:"chapter/code/leetcode/tree.md"},o=l("",18),e=[o];function t(c,r,D,y,A,F){return a(),n("div",null,e)}const d=s(p,[["render",t]]);export{i as __pageData,d as default};

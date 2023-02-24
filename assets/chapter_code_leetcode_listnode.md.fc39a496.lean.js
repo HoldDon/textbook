@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,b as l}from"./app.a6c93100.js";const i=JSON.parse('{"title":"链表算法","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/code/leetcode/listnode.md"}'),p={name:"chapter/code/leetcode/listnode.md"},o=l("",11),e=[o];function t(c,r,D,y,C,A){return n(),a("div",null,e)}const d=s(p,[["render",t]]);export{i as __pageData,d as default};
