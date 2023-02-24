@@ -82,6 +82,3 @@ typings/
 _book/
 
 /docs/.vitepress/cache/
-
-package-lock.json
-yarn.lock
