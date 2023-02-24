@@ -30,7 +30,6 @@ TomcatServletWebServerFactory webServerFactory() {
 ```
 
 ## Flowable指定DataSource
-
 **原因：** 有时业务库和流程库不在一起，需要隔离开。  
 **解决办法：** 使用EngineConfigurationConfigurer，更改默认配置。
  
@@ -54,3 +53,11 @@ public EngineConfigurationConfigurer<SpringProcessEngineConfiguration> changeDat
 **原因：** Minio与SpringBoot 所以来的okhttp3版本不一致，导致初始化错误。  
 **解决办法：** 在pom中指定与Minio依赖一直的okhttp3版本号。
 
+
+## GIT-修改.gitignore文件后使之生效
+```
+git rm -r --cached .  #清除缓存  
+git add . #重新trace file  
+git commit -m "update .gitignore" #提交和注释  
+git push origin master #可选，如果需要同步到remote上的话  
+```
