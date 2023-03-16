@@ -61,3 +61,67 @@ git add . #重新trace file
 git commit -m "update .gitignore" #提交和注释  
 git push origin master #可选，如果需要同步到remote上的话  
 ```
+
+## SpringBoot 动态cron任务
+ 
+```java
+@Component
+public class DynamicJob implements SchedulingConfigurer {
+
+    private ScheduledTaskRegistrar scheduledTaskRegistrar;
+
+    private Map<Long, ScheduledTask> taskMap = new HashMap<>(16);
+
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
+        this.scheduledTaskRegistrar = scheduledTaskRegistrar;
+        //此步重要，没有此方法，ScheduledTaskRegistrar尚未初始化，调度器和执行器都为空
+        //返回的ScheduledTask会为空，但任务会在后续执行，导致无法控制
+        this.scheduledTaskRegistrar.afterPropertiesSet();
+
+        //此处可执行初始化操作
+        this.addTask(1L, () -> System.out.println("任务1号,10秒一次:" + DateUtil.now()), "0/10 * * * * ?");
+        this.addTask(2L, () -> System.out.println("任务2号,20秒一次:" + DateUtil.now()), "5/20 * * * * ?");
+
+    }
+
+    /**
+     * 移除动态任务
+     *
+     * @param taskId 任务id
+     */
+    public void removeTask(Long taskId) {
+        ScheduledTask task = taskMap.get(taskId);
+        if (task != null) {
+            task.cancel();
+        }
+    }
+
+    /**
+     * 新建任务
+     *
+     * @param taskId 任务id
+     * @param method 执行方法
+     * @param corn   corn表达式
+     */
+    public void addTask(Long taskId, Runnable method, String corn) {
+        if (taskMap.containsKey(taskId)) {
+            return;
+        }
+        CronTask cronTask = new CronTask(method, corn);
+        ScheduledTask scheduledTask = scheduledTaskRegistrar.scheduleCronTask(cronTask);
+        if (scheduledTask != null) {
+            taskMap.put(taskId, scheduledTask);
+        }
+    }
+
+    public static boolean isCronValid(String cron) {
+        try {
+            CronExpression.parse(cron);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+}
+```
