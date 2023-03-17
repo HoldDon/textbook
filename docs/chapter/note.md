@@ -21,8 +21,8 @@ TomcatServletWebServerFactory webServerFactory() {
 **原因：** 数据库链接中缺少nullCatalogMeansCurrent，导致在所有库中检查表。  
 **解决办法：** 设置数据库链接参数nullCatalogMeansCurrent=true，只在当前库中检查。
 另外，如果只需要流程主体，引入单个包即可。  
-```xml
 <dependency>
+```xml
     <groupId>org.flowable</groupId>
     <artifactId>flowable-spring-boot-starter-process</artifactId>
     <version>${flowable.version}</version>
@@ -125,3 +125,35 @@ public class DynamicJob implements SchedulingConfigurer {
     }
 }
 ```
+
+
+## bpnmn-js展现流程图并高亮指定节点
+执行 yarn add bpmn-js
+```js
+import Viewer from 'bpmn-js/lib/Viewer';
+import ModelingModule from 'bpmn-js/lib/features/modeling';
+import 'bpmn-js/dist/assets/bpmn-js.css';
+
+let viewer = new Viewer({
+    container: '.bpmn-container',
+    additionalModules: [ModelingModule]
+});
+
+try {
+    //bpmn流程xml文件内容
+    const xml = "";
+    const { warnings } = await viewer.importXML(xml);
+
+    var elementRegistry = viewer.get('elementRegistry');
+    //获取任务id
+    var shape = elementRegistry.get('userTaskId');
+    let modeling = viewer.get('modeling');
+    modeling.setColor(shape, {
+        stroke: 'blue',
+    });
+} catch (err) {
+    console.log('error rendering', err);
+}
+
+```
+
