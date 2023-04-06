@@ -2,25 +2,13 @@
 layout: home
 
 hero:
-    name: VitePress
-    text: Vite & Vue powered static site generator.
-    tagline: Lorem ipsum...
+    name: 个人日志
+    tagline: 与其感慨路难行，不如马上出发
     actions:
-      - theme: brand
-        text: Get Started
-        link: /guide/what-is-vitepress
       - theme: alt
-        text: View on GitHub
-        link: https://github.com/vuejs/vitepress
-
-features:
-    - icon: ⚡️
-      title: Vite, The DX that can't be beat
-      details: Lorem ipsum...
-    - icon: 🖖
-      title: Power of Vue meets Markdown
-      details: Lorem ipsum...
-    - icon: 🛠️
-      title: Simple and minimal, always
-      details: Lorem ipsum...
+        text: 知识
+        link: /chapter/code/leetcode/sort
+      - theme: alt
+        text: 记录
+        link: /chapter/note
 ---
