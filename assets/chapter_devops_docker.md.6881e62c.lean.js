@@ -1,0 +1,1 @@
+import{_ as s,c as l,o as a,N as n}from"./chunks/framework.d71a89c9.js";const D=JSON.parse('{"title":"docker","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/devops/docker.md"}'),o={name:"chapter/devops/docker.md"},e=n("",8),t=[e];function r(i,c,p,C,d,u){return a(),l("div",null,t)}const A=s(o,[["render",r]]);export{D as __pageData,A as default};
