@@ -8,7 +8,7 @@ export default {
             {
                 text: '编程', items: [
                     { text: "知识点", link: '/chapter/code/leetcode/sort' },
-                    { text: "问题记录", link: '/chapter/note' }
+                    { text: "记录", link: '/chapter/note' }
                 ]
             },
             // { text: '数学', link: '/chapter/math/linearAlgebra' },

@@ -157,3 +157,40 @@ try {
 
 ```
 
+## Mybatis指定多个数据源
+
+```java
+/**
+ * 指定Mapper包所在的位置以及引用的数据源
+ */
+@Configuration
+@MapperScan(basePackages = {"com.hoe.port.mapper.xxx"}, sqlSessionFactoryRef = "xxxSqlSessionFactory")
+public class XxxConfig {
+
+    /**
+     *   Primary注解 指定首要数据源
+     *   prefix指定数据源配置的前缀
+     * @return
+     */
+    @Bean(name = "xxxDataSource")
+    @Primary
+    @ConfigurationProperties(prefix = "spring.datasource.xxx")
+    public DataSource dataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    /**
+     *   指定SqlSessionFactory所属的数据源并设置类型别名的位置
+     * @return
+     */
+    @Bean("xxxSqlSessionFactory")
+    @Primary
+    public SqlSessionFactory sqlSessionFactory(@Qualifier("xxxDataSource") DataSource dataSource) throws Exception {
+        MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.hoe.port.entity.xxx");
+        return sqlSessionFactoryBean.getObject();
+
+    }
+}
+```
