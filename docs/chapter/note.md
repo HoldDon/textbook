@@ -21,8 +21,8 @@ TomcatServletWebServerFactory webServerFactory() {
 **原因：** 数据库链接中缺少nullCatalogMeansCurrent，导致在所有库中检查表。  
 **解决办法：** 设置数据库链接参数nullCatalogMeansCurrent=true，只在当前库中检查。
 另外，如果只需要流程主体，引入单个包即可。  
-<dependency>
 ```xml
+<dependency>
     <groupId>org.flowable</groupId>
     <artifactId>flowable-spring-boot-starter-process</artifactId>
     <version>${flowable.version}</version>
