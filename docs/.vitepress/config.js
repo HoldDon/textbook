@@ -57,16 +57,12 @@ export default {
                     ],
                 },
                 {
-                    text: "多线程",
+                    text: "编程语言",
                     items: [
                         {
-                            text: 'synchronized',
-                            link: "/chapter/code/thread/synchronized",
-                        },
-                        {
-                            text: 'CompletableFuture',
-                            link: "/chapter/code/thread/CompletableFuture",
-                        },
+                            text: 'java',
+                            link: "/chapter/code/language/java",
+                        }
                     ]
                 }
             ],

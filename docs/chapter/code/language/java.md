@@ -1,3 +1,6 @@
+
+
+
 # 多线程
 
 ![An image](/lock-mind.jpg)
@@ -9,8 +12,17 @@
 ## synchronized
     核心就是争夺monitor对象的所有权,monitorenter进入数+1,monitorexit进入数-1,直到为0。才可以被其他线程持有。  
     synchronized方法上会有一个特殊的标志位ACC_SYNCHRONIZED，会隐式调用上述两个指令
-#### 用法:
+### 用法:
 * 普通方法，锁当前实例
 * 静态方法，锁当前类
 * 代码块，锁括号里面的对象  
-#### 
+
+## CompletableFuture
+
+| 静态方法 | 作用 |
+| ---- | ---- |
+| **supplyAsync** | 返回CompletableFuture&lt;U&gt;，有类型为U的返回值 |
+| **runAsync** | 返回CompletableFuture&lt;Void&gt;，只执行，无返回值 |
+
+上述两个静态方法创建后会立即执行。  
+
