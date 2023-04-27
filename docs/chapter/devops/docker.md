@@ -51,3 +51,9 @@ EXPOSE <端口1> [<端口2>...]
 **WORKDIR** 指定工作目录  
 **EXPOSE** 声明端口  
 
+### TIPS
+
+```
+// 进入容器
+docker exec -ti container-name /bin/sh
+```

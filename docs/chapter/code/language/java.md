@@ -1,5 +1,39 @@
 
 
+# Spring
+## Spring Boot
+### 定时任务
+
+```java
+@SpringBootApplication
+//启用定时任务
+@EnableScheduling 
+public class MatchApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(MatchApplication.class, args);
+	}
+}
+
+@Component
+public class XxxJob {
+
+    //固定频率
+    @Scheduled(fixedRate = 1000)
+    public void fixedRate() {
+    }
+
+    //固定间隔 即每次方法执行完后等待指定时间
+    @Scheduled(fixedDelay = 1000)
+    public void fixedDelay() {
+    }
+    
+    //按cron表达式来执行
+    @Scheduled(cron = "")
+    public void cron() {
+    }
+}
+```
+
 
 # 多线程
 
