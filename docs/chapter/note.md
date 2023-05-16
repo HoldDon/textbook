@@ -194,3 +194,9 @@ public class XxxConfig {
     }
 }
 ```
+
+
+
+## 事务注解@Transactional嵌套异步@Async注解时，异步失效
+
+事务关联的所有方法需要在一个现成下执行，遇到嵌套的异步注解时，异步失效
