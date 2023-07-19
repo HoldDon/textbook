@@ -199,4 +199,24 @@ public class XxxConfig {
 
 ## 事务注解@Transactional嵌套异步@Async注解时，异步失效
 
-事务关联的所有方法需要在一个现成下执行，遇到嵌套的异步注解时，异步失效
+事务关联的所有方法需要在一个线程下执行，遇到嵌套的异步注解时，异步失效
+
+## jackson-xml处理列表嵌套
+
+```java
+/**
+ * 注解
+ */
+@JacksonXmlElementWrapper(localName = "DataList")
+@JacksonXmlProperty(localName = "DataItem")
+private List<DataItem> dataList;
+```
+对应  
+```xml
+<DataList>  
+    <DataItem>  
+        <Item1>Item1</Item1>      
+        <Item2>Item1</Item2>         
+    <DataItem>  
+</DataList> 
+```
