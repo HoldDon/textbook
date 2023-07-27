@@ -220,3 +220,26 @@ private List<DataItem> dataList;
     <DataItem>  
 </DataList> 
 ```
+
+## 图片压缩工具
+
+```java
+
+import net.coobird.thumbnailator.Thumbnails;
+
+/**
+<dependency>
+    <groupId>net.coobird</groupId>
+    <artifactId>thumbnailator</artifactId>
+    <version>0.4.20</version>
+</dependency>
+ */
+public void compress(){
+    File file = new File("/xx/xx/xx.png");
+    Thumbnails.of(file)
+        .scale(1f) //尺寸比例
+        .outputQuality(0.3f) //压缩比例
+        .toOutputStream(Files.newOutputStream("/target/xxx.png"));
+}
+
+```
