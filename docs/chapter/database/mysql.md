@@ -51,6 +51,6 @@
 1.  or和in在性能上并不等价，in会先将列表内的数据进行排序，如果字段命中索引，则进行二分查找来确定是否满足条件，复杂度为O(log n)。而单纯的or则是挨个比较，复杂度为O(n)。所以，如果大量比较的时候，用in比较合适。
 2.  coalesce(a,b,c);a,b,c以此判断null，返回第一个不为null的值。
 3.  GROUP BY xx WITH ROLLUP，分组后再次汇总，类似于excel底部求和。
-4.  InnoDB目前处理死锁的方法是，将持有最少行级排他锁的事务进行回滚
+4.  InnoDB目前处理死锁的方法是，将持有最少行级排他锁的事务进行回滚。
 5.  预写式日志(Write-Ahead Logging)，先修改数据的内存拷贝，再把修改行为记录到事务日志中，后台再慢慢刷回到磁盘。
 6.  可以使用COMPRESS函数压缩字符串以减少占用空间，还原时使用CONVERT(UNCOMPRESS(compressed_content) USING utf8)。
