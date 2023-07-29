@@ -68,7 +68,7 @@ typings/
 .nuxt
 
 # vitepress build output
-.vitepress/dist
+/docs/.vitepress/dist
 
 # Serverless directories
 .serverless/
