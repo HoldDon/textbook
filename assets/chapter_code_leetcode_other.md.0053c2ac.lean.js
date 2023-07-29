@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,N as l}from"./chunks/framework.d71a89c9.js";const i=JSON.parse('{"title":"其他算法","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/code/leetcode/other.md"}'),o={name:"chapter/code/leetcode/other.md"},p=l("",13),e=[p];function t(c,r,D,y,C,A){return a(),n("div",null,e)}const d=s(o,[["render",t]]);export{i as __pageData,d as default};

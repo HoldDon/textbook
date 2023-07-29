@@ -1,8 +1,0 @@
-import{_ as a,c as s,o as e,N as n}from"./chunks/framework.d71a89c9.js";const m=JSON.parse('{"title":"动态规划","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/code/leetcode/dynamicprogram.md"}'),l={name:"chapter/code/leetcode/dynamicprogram.md"},o=n(`<h1 id="动态规划" tabindex="-1">动态规划 <a class="header-anchor" href="#动态规划" aria-label="Permalink to &quot;动态规划&quot;">​</a></h1><h3 id="核心框架" tabindex="-1">核心框架 <a class="header-anchor" href="#核心框架" aria-label="Permalink to &quot;核心框架&quot;">​</a></h3><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki material-theme-palenight"><code><span class="line"><span style="color:#A6ACCD;">    //最值数组 可能是多维</span></span>
-<span class="line"><span style="color:#A6ACCD;">    dp[] = new [];</span></span>
-<span class="line"><span style="color:#A6ACCD;">    for(状态1 in 状态1集合){</span></span>
-<span class="line"><span style="color:#A6ACCD;">        //可能有多个状态，跟最值数组对应</span></span>
-<span class="line"><span style="color:#A6ACCD;">        dp[状态1] = 求最值(dp[选择1]);</span></span>
-<span class="line"><span style="color:#A6ACCD;">    }</span></span>
-<span class="line"><span style="color:#A6ACCD;"></span></span>
-<span class="line"><span style="color:#A6ACCD;"></span></span></code></pre></div><p>难点在于如何找到状态转移方程.<br> 初始值如何赋值 套路:</p><ol><li>边界值处理</li><li>确定「状态」，也就是原问题和子问题中会变化的变量</li><li>确定「选择」，也就是导致「状态」产生变化的行为</li><li>明确 dp数组的定义</li></ol><hr><h4 id="已刷题目列表" tabindex="-1">已刷题目列表 <a class="header-anchor" href="#已刷题目列表" aria-label="Permalink to &quot;已刷题目列表&quot;">​</a></h4>`,7),t=[o];function p(c,r,i,d,_,h){return e(),s("div",null,t)}const A=a(l,[["render",p]]);export{m as __pageData,A as default};
