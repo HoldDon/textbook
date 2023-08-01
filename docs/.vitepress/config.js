@@ -55,7 +55,7 @@ export default {
                             link: "/chapter/code/leetcode/other",
                         },
                     ],
-                },
+                }, 
                 {
                     text: "编程语言",
                     items: [
