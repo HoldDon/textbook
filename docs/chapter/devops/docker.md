@@ -56,4 +56,8 @@ EXPOSE <端口1> [<端口2>...]
 ```
 // 进入容器
 docker exec -ti container-name /bin/sh
+// 构建本地镜像
+docker build -t name:tag .
+// 运行容器
+docker run -d -p 主:容 --name name image:tag
 ```
