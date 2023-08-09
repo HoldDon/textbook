@@ -6,6 +6,11 @@
  ffmpeg [选项] [[输入文件选项] -i 输入文件]... {[输出文件选项] 输出文件}...
 ```
 
+## 加水印
+```
+-vf "drawtext=text='水印':fontsize=24:x=(w-text_w-10):y=(h-text_h-10):fontcolor=white:box=1:boxcolor=black@0.5:fontfile=/path/to/font.ttf"
+```
+
 ## 直播推流
 
 ```
