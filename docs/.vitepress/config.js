@@ -7,7 +7,7 @@ export default {
         nav: [
             {
                 text: '编程', items: [
-                    { text: "教程", link: '/chapter/code/leetcode/sort' },
+                    { text: "教程", link: '/chapter/code/algorithm/leetcode' },
                     { text: "记录", link: '/chapter/note' }
                 ]
             },
@@ -31,29 +31,9 @@ export default {
                     text: "算法",
                     items: [
                         {
-                            text: '排序',
-                            link: "/chapter/code/leetcode/sort",
-                        },
-                        {
-                            text: '回溯算法',
-                            link: "/chapter/code/leetcode/backtracking",
-                        },
-                        {
-                            text: '树算法',
-                            link: "/chapter/code/leetcode/tree",
-                        },
-                        {
-                            text: '链表算法',
-                            link: "/chapter/code/leetcode/listnode",
-                        },
-                        {
-                            text: '字符串',
-                            link: "/chapter/code/leetcode/string",
-                        },
-                        {
-                            text: '其他',
-                            link: "/chapter/code/leetcode/other",
-                        },
+                            text: 'leetcode',
+                            link: "/chapter/code/algorithm/leetcode",
+                        }
                     ],
                 }, 
                 {

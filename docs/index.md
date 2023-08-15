@@ -7,7 +7,7 @@ hero:
     actions:
       - theme: alt
         text: 教程
-        link: /chapter/code/leetcode/sort
+        link: /chapter/code/algorithm/leetcode
       - theme: alt
         text: 记录
         link: /chapter/note

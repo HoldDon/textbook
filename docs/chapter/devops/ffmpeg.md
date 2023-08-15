@@ -13,7 +13,9 @@ ffmpeg [选项] [[输入文件选项] -i 输入文件]... {[输出文件选项] 
 -s 1280x720
 # 指定帧率为30
 -r 30
-
+# 指定视频滤镜的选项 -vf filter1=value1:param1=value2,filter2=value3:param2=value4
+# 调整亮度(brightness)和对比度(contrast)的滤镜
+-vf brightness=0.5:contrast=1.2 output.mp4
 
 # 隐藏版本和版权信息
 -hide_banner 
