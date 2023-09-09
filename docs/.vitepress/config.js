@@ -15,6 +15,7 @@ export default {
             {
                 text: '数据库', items: [
                     { text: 'mysql', link: '/chapter/database/mysql' },
+                    { text: 'postgresql', link: '/chapter/database/postgresql' },
                     { text: 'redis', link: '/chapter/database/redis' },
                 ]
             },
