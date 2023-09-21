@@ -34,6 +34,10 @@ public class XxxJob {
 }
 ```
 
+### 其他
+
+1. nacos项目中启动服务出现`parse data from Nacos error,dataId:xxx.yml`错误，要在启动命令上加上编码：`java -Dfile.encoding=utf-8 -jar` 。
+
 
 # 多线程
 

@@ -21,6 +21,7 @@ export default {
             },
             {
                 text: 'DevOps', items: [
+                    { text: 'linux', link: '/chapter/devops/linux' },
                     { text: 'docker', link: '/chapter/devops/docker' },
                     { text: 'ffmpeg', link: '/chapter/devops/ffmpeg' },
                 ]
