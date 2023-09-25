@@ -29,6 +29,8 @@
 + --rm 容器退出时，自动清理容器内的文件系统
 + -h HOSTNAME --hostname=HOSTNAME 设定容器的主机名
 + --dns=IP_ADDRESS  添加 DNS 服务器到容器   --dns-search=DOMAIN： 设定容器的搜索域
++ -u uid:gid 指定用户组
++ -e TZ=Asia/Shanghai  指定时区
 
 ### Dockerfile文件
 
@@ -59,5 +61,5 @@ docker exec -ti container-name /bin/sh
 // 构建本地镜像
 docker build -t name:tag .
 // 运行容器
-docker run -d -p 主:容 --name name image:tag
+docker run -d -p 主:容 -v 主:容 --name name image:tag
 ```
