@@ -25,7 +25,7 @@
 + -P 使用容器内的随机端口映射到外部主机
 + -p host:container  指定主机到容器的端口映射
 + --name 指定容器名称
-+ --network 指定网络
++ --network 指定网络 host表示跟主机一致
 + --rm 容器退出时，自动清理容器内的文件系统
 + -h HOSTNAME --hostname=HOSTNAME 设定容器的主机名
 + --dns=IP_ADDRESS  添加 DNS 服务器到容器   --dns-search=DOMAIN： 设定容器的搜索域

@@ -48,6 +48,7 @@ FROM empsalary;
 ## openGauss常用运维命令
 
 ```bash
+# 以操作系统用户omm登录
 # 查看数据库状态 cluster_state显示Normal表示正常
 gs_om -t status
 # 重启数据库
