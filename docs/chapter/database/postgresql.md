@@ -63,7 +63,9 @@ gsql -d postgres -p 15400
 -- A兼容性下，数据库将空字符串作为NULL处理，数据类型DATE会被替换为TIMESTAMP(0) WITHOUT TIME ZONE。
 SHOW SQL_COMPATIBILITY;
 
-
---只能在创建数据库的时候指定
+-- 只能在创建数据库的时候指定
 CREATE DATABASE db_name WITH  ENCODING = 'UTF8' LC_COLLATE = 'C' LC_CTYPE = 'C' DBCOMPATIBILITY  = 'PG';
+
+-- 修改密码
+ALTER USER user_name IDENTIFIED BY 'new_password' REPLACE 'old_password';
 ```
