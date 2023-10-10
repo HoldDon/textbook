@@ -56,3 +56,14 @@ gs_om -t restart
 # 登录数据库
 gsql -d postgres -p 15400
 ```
+
+```sql
+-- 兼容的数据库的类型，默认A
+-- 取值范围：A、B、C、PG，分别表示兼容O、MY、TD和POSTGRES
+-- A兼容性下，数据库将空字符串作为NULL处理，数据类型DATE会被替换为TIMESTAMP(0) WITHOUT TIME ZONE。
+SHOW SQL_COMPATIBILITY;
+
+
+--只能在创建数据库的时候指定
+CREATE DATABASE db_name WITH  ENCODING = 'UTF8' LC_COLLATE = 'C' LC_CTYPE = 'C' DBCOMPATIBILITY  = 'PG';
+```
