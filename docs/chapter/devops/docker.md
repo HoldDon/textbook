@@ -58,7 +58,7 @@ EXPOSE <端口1> [<端口2>...]
 ```
 // 进入容器
 docker exec -ti container-name /bin/sh
-// 构建本地镜像
+// 构建本地镜像， -f 可指定Dockerfile文件地址，最后的.为上下文，也可指定路径
 docker build -t name:tag .
 // 运行容器
 docker run -d -p 主:容 -v 主:容 --name name image:tag
