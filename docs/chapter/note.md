@@ -243,3 +243,10 @@ public void compress(){
 }
 
 ```
+
+## Node打包内存溢出
+
+当执行node命令时，出现`FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory`错误。
+```bash
+export NODE_OPTIONS=--max_old_space_size=4069
+```
