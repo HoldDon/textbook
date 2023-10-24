@@ -3,6 +3,8 @@
 ## 常用命令
 
 ```bash
+# 支持中文
+export LC_ALL=C.UTF-8
 # 命令的实际安装目录
 readlink -f /usr/bin/java
 # 建立符号链接
