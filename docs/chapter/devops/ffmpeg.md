@@ -28,8 +28,16 @@ ffmpeg -i input.mp4 -ss 00:10:00 -t 00:01:00 -c:v libx264 -c:a copy output.mp4
 
 ## mp4转m3u8
 ``` bash
-# hls_time 切片时长,hls_list_size 切片数量 0为无限制,hls_segment_filename 切片名称
+# hls_time 切片时长,hls_list_size 切片数量 0为无限制,hls_segment_filename 切片名称 -hls_base_url 可选，指定ts文件的路径前缀
 ffmpeg -i input.mp4 -c:v libx264 -c:a aac -hls_time 10 -hls_list_size 0 -hls_segment_filename "output_%03d.ts" output.m3u8
+```
+
+## 压缩视频
+``` bash
+# -c:v -c:a 分别指定视频/音频编码 也可以使用copy不重新编码
+# -crf 指定压缩质量，数值越小，压缩后的视频质量越高，但文件大小也越大。一般建议使用 18-28 的范围
+# -preset 指定压缩速度，可选值包括 veryfast、faster、fast、medium、slow、slower、veryslow建议使用 medium 或 slow。
+ffmpeg -i input.mp4 -c:v libx264 -c:a aac -crf 23 -preset medium output.mp4
 ```
 
 ## 加水印
