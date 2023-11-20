@@ -56,6 +56,9 @@ EXPOSE <端口1> [<端口2>...]
 ### TIPS
 
 ```
+// 安装脚本
+ curl -fsSL https://get.docker.com -o get-docker.sh
+ sudo sh get-docker.sh
 // 进入容器
 docker exec -ti container-name /bin/sh
 // 构建本地镜像， -f 可指定Dockerfile文件地址，最后的.为上下文，也可指定路径
