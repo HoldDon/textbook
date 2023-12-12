@@ -9,6 +9,8 @@ export LC_ALL=C.UTF-8
 readlink -f /usr/bin/java
 # 建立符号链接
 ln -s /opt/apache-maven-3.9.5/bin/mvn /usr/bin/mvn
+# 检查指定服务器端口是否开放
+nc -zv <服务器IP地址> <端口号>
 ```
 
 ## 树莓派
