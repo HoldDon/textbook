@@ -9,5 +9,10 @@
 # 3.x https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 ```
+## 基础语法
+### 类型
 
+| 函数 | 描述 |
+| :--- | :--- |
+| `int(x [,base])` | 将x转换为一个整数 base为进制数 |
 
