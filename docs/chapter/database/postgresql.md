@@ -8,15 +8,21 @@
 ```sql
 -- 字符串合并 string || string
 select 'Post' || 'greSQL'; -- PostgreSQL
+
 -- 替换字符串 overlay(string placing string from int [for int])
 select overlay('Txxxxas' placing 'hom' from 2 for 4); -- Thomas
+
 -- 指定分隔符合并字符串
 select concat_ws(',', 'abcde', 2, NULL, 22); -- abcde,2,22
+
 -- 判断时间是否重叠 
 -- (start1, end1) OVERLAPS (start2, end2) 
 -- (start1, length1) OVERLAPS (start2, length2)
 SELECT (DATE '2001-02-16', DATE '2001-12-21') OVERLAPS
        (DATE '2001-10-30', DATE '2002-10-30');   -- true
+
+-- 手动释放空间
+VACUUM FULL VERBOSE ANALYZE;
 ```
 
 2. 类型转换
@@ -25,7 +31,7 @@ type 'string'
 'string'::type
 CAST ( 'string' AS type )
 ```
-1. `with`关键字，公共表表达式（Common Table Expression，CTE），用于创建可重复使用的临时表。
+3. `with`关键字，公共表表达式（Common Table Expression，CTE），用于创建可重复使用的临时表。
 
 ```sql
 WITH expression_name [ (column_name [, ...] ) ] AS (
