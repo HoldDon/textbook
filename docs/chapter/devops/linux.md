@@ -11,6 +11,12 @@ readlink -f /usr/bin/java
 ln -s /opt/apache-maven-3.9.5/bin/mvn /usr/bin/mvn
 # 检查指定服务器端口是否开放
 nc -zv <服务器IP地址> <端口号>
+
+# 网络请求
+wget url #下载
+curl url #只返回body
+curl url #只返回res.header
+curl url #返回req.header、res.header、body
 ```
 
 ## 树莓派
