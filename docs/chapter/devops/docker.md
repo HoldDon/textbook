@@ -27,6 +27,7 @@
 + --name 指定容器名称
 + --network 指定网络 host表示跟主机一致
 + --rm 容器退出时，自动清理容器内的文件系统
++ --restart 重启参数:no-默认不自动重启,always-总是重启,on-failure[:retry]非零状态时重启retry次数,unless-stopped非手动停止时重启
 + -h HOSTNAME --hostname=HOSTNAME 设定容器的主机名
 + --dns=IP_ADDRESS  添加 DNS 服务器到容器   --dns-search=DOMAIN： 设定容器的搜索域
 + -u uid:gid 指定用户组
@@ -65,6 +66,8 @@ docker exec -ti container-name /bin/sh
 docker build -t name:tag .
 // 运行容器
 docker run -d -p 主:容 -v 主:容 --name name image:tag
+// 更新容器
+docker update --restart=always my_container
 // 容器提交为镜像
 docker docker commit <container-id/name> <image-name>:<tag>
 // 镜像导出为文件
