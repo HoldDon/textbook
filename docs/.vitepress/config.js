@@ -11,7 +11,11 @@ export default {
                     { text: "记录", link: '/chapter/note' }
                 ]
             },
-            // { text: '数学', link: '/chapter/math/linearAlgebra' },
+            {
+                text: '技术', items: [
+                    { text: "opencv", link: '/chapter/tech/opencv' },
+                ]
+            },
             {
                 text: '数据库', items: [
                     { text: 'mysql', link: '/chapter/database/mysql' },
@@ -37,7 +41,7 @@ export default {
                             link: "/chapter/code/algorithm/leetcode",
                         }
                     ],
-                }, 
+                },
                 {
                     text: "编程语言",
                     items: [
