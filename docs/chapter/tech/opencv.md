@@ -266,3 +266,8 @@ x,y,w,h = cv2.boundingRect( array )
 retval =cv2.minAreaRect( points )
 points = cv2.boxPoints( box )
 ```
+## 模板匹配
+在图片A中查找与图片B相似的部分
+```python
+result = cv2.matchTemplate(image, templ, method[, mask ] )
+```
