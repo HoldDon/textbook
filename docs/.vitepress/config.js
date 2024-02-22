@@ -48,6 +48,10 @@ export default {
                         {
                             text: 'java',
                             link: "/chapter/code/language/java",
+                        },
+                        {
+                            text: 'python',
+                            link: "/chapter/code/language/python",
                         }
                     ]
                 }

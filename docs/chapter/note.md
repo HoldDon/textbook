@@ -250,3 +250,8 @@ public void compress(){
 ```bash
 export NODE_OPTIONS=--max_old_space_size=4069
 ```
+
+## YOLOV8的结果进行plot()时出现中文乱码
+
+下载https://ultralytics.com/assets/Arial.Unicode.ttf字体   
+复制到C:\Users\${user}\AppData\Roaming\Ultralytics\文件夹下
