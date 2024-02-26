@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,S as l}from"./chunks/framework.e9d044e1.js";const i=JSON.parse('{"title":"记录","description":"","frontmatter":{},"headers":[],"relativePath":"chapter/note.md","filePath":"chapter/note.md"}'),o={name:"chapter/note.md"},p=l("",32),t=[p];function e(c,r,y,D,F,C){return a(),n("div",null,t)}const d=s(o,[["render",e]]);export{i as __pageData,d as default};
