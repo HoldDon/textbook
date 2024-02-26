@@ -50,3 +50,11 @@ ffmpeg -i input.mp4 -c:v libx264 -c:a aac -crf 23 -preset medium output.mp4
 ```
 ffmpeg -re -i 'input.mp4' -vcodec libx264 -acodec aac -f flv  rtmp://127.0.0.1:1938/live/test
 ```
+
+## 硬件加速
+```bash
+# 查看支持的加速模式
+ffmpeg -hwaccels
+# 启用加速，nv显卡
+ffmpeg -hwaccel cuda
+```
