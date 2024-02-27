@@ -20,10 +20,10 @@
 | 类型 | 含义 |
 | -------------- | ------------------------ |
 | **noeviction** | 内存不足时，返回错误 |
-| **allkeys-lru** | 删除最近最少访问的key，针对**所有**key |
-| **volatile-lru** | 删除最近最少访问的key，针对**有过期时间**key |
-| **allkeys-lfu** | 删除最近频繁访问的key，针对**所有**key |
-| **volatile-lfu** | 删除最近频繁访问的key，针对**有过期时间**key |
+| **allkeys-lru** | 删除最近最少访问（时间）的key，针对**所有**key |
+| **volatile-lru** | 删除最近最少访问（时间）的key，针对**有过期时间**key |
+| **allkeys-lfu** | 删除最近最少访问（频率）的key，针对**所有**key |
+| **volatile-lfu** | 删除最近最少访问（频率）的key，针对**有过期时间**key |
 | **allkeys-random** | 随机删除的key，针对**所有**key |
 | **volatile-random** | 随机删除的key，针对**有过期时间**key |
 | **volatile-ttl** | 删除过期的key，并优先选择ttl较小的 |
