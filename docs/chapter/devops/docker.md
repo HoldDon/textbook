@@ -75,3 +75,9 @@ docker save -o /path/image.tar <image-name>:<tag>
 // 文件导入为镜像
 docker load -i myimage.tar
 ```
+
+### 安装英伟达cuda
+
+```
+
+```

@@ -8,6 +8,10 @@
 # 2.x https://bootstrap.pypa.io/pip/2.7/get-pip.py
 # 3.x https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
+
+# 清华镜像
+python -m pip install --upgrade pip
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 ## 基础语法
 ### 环境
