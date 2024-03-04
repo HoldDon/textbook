@@ -253,5 +253,15 @@ export NODE_OPTIONS=--max_old_space_size=4069
 
 ## YOLOV8的结果进行plot()时出现中文乱码
 
-下载https://ultralytics.com/assets/Arial.Unicode.ttf字体   
-复制到C:\Users\${user}\AppData\Roaming\Ultralytics\文件夹下
+下载 https://ultralytics.com/assets/Arial.Unicode.ttf 字体   
+复制到 下列文件夹下
+windows C:\Users\${user}\AppData\Roaming\Ultralytics\
+linux   /root/.config/Ultralytics/
+
+## knife4j-openapi接口路径问题
+
+```yml
+springdoc:
+  api-docs:
+    path: v3/api-docs # 此为相对路径  若前缀有/ 则为绝对路径
+```

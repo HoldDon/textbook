@@ -14,7 +14,7 @@
 - attach/exec  进入容器，区别在于attach在退出终端时会停止容器，推荐使用exec
 - import /export  导入/导出容器
 - rm/rmi  删除 容器/镜像
-- ps 查看所有运行中的容器 -a：查看所有状态的容器 -l：查看最后一次创建的容器
+- ps 查看所有运行中的容器 -a：查看所有状态的容器 -l：查看最后一次创建的容器 -s:显示占用空间
 - port 查看容器的端口映射
 
 ### run参数
@@ -47,7 +47,7 @@ EXPOSE <端口1> [<端口2>...]
 ```
 
 **FROM** 指定运行的镜像  
-**RUN/CMD** 用于执行命令，RUN在docker build时运行，CMD 在docker run 时运行  
+**RUN/CMD** 用于执行命令，RUN在docker build时运行，CMD 在docker run 时运行 ，多个命令***尽量***在一个`RUN/CMD`内执行 
 **ENTRYPOIN** 类似CMD，在执行 docker run 的时候可以指定 ENTRYPOINT 运行所需的参数。仅最后一个生效  
 **COPY/ADD** 复制命令，从本机文件复制到容器内的路径。ADD会讲压缩文件解压到目标路径，无法复制压缩文件，可能会使构建比较慢   
 **VOLUME** 定义匿名数据卷，避免数据因为重启而丢失和容器不断变大  
@@ -68,7 +68,8 @@ docker build -t name:tag .
 docker run -d -p 主:容 -v 主:容 --name name image:tag
 // 更新容器
 docker update --restart=always my_container
-// 容器提交为镜像
+// 容器提交为镜像 
+docker system prune (可选，释放容器的只读空间)
 docker docker commit <container-id/name> <image-name>:<tag>
 // 镜像导出为文件
 docker save -o /path/image.tar <image-name>:<tag>
@@ -78,6 +79,4 @@ docker load -i myimage.tar
 
 ### 安装英伟达cuda
 
-```
-
-```
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html
