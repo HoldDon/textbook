@@ -34,6 +34,11 @@ public class XxxJob {
 }
 ```
 
+### 参数
+
+* `-Dfile.encoding=utf-8` 指定编码
+* `-Duser.timezone=Asia/Shanghai` 指定时区
+
 ### 其他
 
 1. nacos项目中启动服务出现`parse data from Nacos error,dataId:xxx.yml`错误，要在启动命令上加上编码：`java -Dfile.encoding=utf-8 -jar` 。

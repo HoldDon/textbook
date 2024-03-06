@@ -12,6 +12,9 @@ ln -s /opt/apache-maven-3.9.5/bin/mvn /usr/bin/mvn
 # 检查指定服务器端口是否开放
 nc -zv <服务器IP地址> <端口号>
 
+# 更改时区
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 # 网络请求
 wget url #下载
 curl url #只返回body

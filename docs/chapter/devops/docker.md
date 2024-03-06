@@ -24,6 +24,7 @@
 + -d 后台运行
 + -P 使用容器内的随机端口映射到外部主机
 + -p host:container  指定主机到容器的端口映射
++ -v host:container  磁盘映射
 + --name 指定容器名称
 + --network 指定网络 host表示跟主机一致
 + --rm 容器退出时，自动清理容器内的文件系统
