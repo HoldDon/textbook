@@ -57,6 +57,7 @@ func(name="CaiXu", age="25", city="NanJing")
 | `zip(*iterables)` | 将多个迭代对象打包，以最短的为长度 | 
 | `all(iterable)` | 迭代对象中所有都为真，则输出True |
 | `any(iterable)` | 迭代对象中任意为真，则输出True |
+| `etattr()\setattr()\hasattr()` | 反射，动态获取和修改对象属性 |
 
 
 ### 表达式
@@ -65,7 +66,19 @@ func(name="CaiXu", age="25", city="NanJing")
 ### 模块用法
 
 - os
-  - `os.path.splitext` 拆分后缀
+  - `os.mkdir` 创建目录
   - `os.rename` 重命名
   - `os.listdir` 获取文件列表
   - `os.path.splitext(path)` 将文件名和后缀分开
+- sys
+  - `sys.argv`  获取命令行参数
+  - `sys.exit()`  退出程序
+- time
+  - `time.time()`  获取时间戳
+  - `time.ctime()` 获取可读时间
+  - `time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())` 格式化时间
+  - `time.sleep(2)` 暂停指定秒数
+- datetime
+  - `datetime.datetime.now()` 当前日期时间
+  - `datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")`  格式化
+  - `datetime(2022, 1, 1) - datetime(2021, 1, 1)` 差值计算
