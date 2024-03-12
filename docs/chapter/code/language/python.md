@@ -59,6 +59,14 @@ func(name="CaiXu", age="25", city="NanJing")
 | `any(iterable)` | 迭代对象中任意为真，则输出True |
 | `etattr()\setattr()\hasattr()` | 反射，动态获取和修改对象属性 |
 
+### 字符串格式化  
+
+- `f"{n:spec}"` 格式规范
+  - `f"{n:10}"` 填充到10位
+  - `f"{n:<10}"` 总宽10位左对齐，`>`右对齐，`^`居中
+  - `f"{n:.2f}"` 设置精度2位
+  - `f"{n:,}"`  千分位分隔符
+  - 类型和进制 整数`d`，浮点数`f`，科学计数法`e`，二进制`b`，八进制`o`，十六进制`x`
 
 ### 表达式
 
@@ -70,6 +78,7 @@ func(name="CaiXu", age="25", city="NanJing")
   - `os.rename` 重命名
   - `os.listdir` 获取文件列表
   - `os.path.splitext(path)` 将文件名和后缀分开
+  - `os.path.basename(path)` 获取路径中的文件名
 - sys
   - `sys.argv`  获取命令行参数
   - `sys.exit()`  退出程序
