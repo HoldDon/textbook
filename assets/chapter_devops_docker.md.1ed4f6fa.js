@@ -18,7 +18,7 @@ import{_ as a,o as s,c as n,S as l}from"./chunks/framework.e9d044e1.js";const u=
 <span class="line"><span style="color:#A6ACCD;">docker update --restart=always my_container</span></span>
 <span class="line"><span style="color:#A6ACCD;">// 容器提交为镜像 </span></span>
 <span class="line"><span style="color:#A6ACCD;">docker system prune (可选，释放容器的只读空间)</span></span>
-<span class="line"><span style="color:#A6ACCD;">docker docker commit &lt;container-id/name&gt; &lt;image-name&gt;:&lt;tag&gt;</span></span>
+<span class="line"><span style="color:#A6ACCD;">docker commit &lt;container-id/name&gt; &lt;image-name&gt;:&lt;tag&gt;</span></span>
 <span class="line"><span style="color:#A6ACCD;">// 镜像导出为文件</span></span>
 <span class="line"><span style="color:#A6ACCD;">docker save -o /path/image.tar &lt;image-name&gt;:&lt;tag&gt;</span></span>
 <span class="line"><span style="color:#A6ACCD;">// 文件导入为镜像</span></span>
