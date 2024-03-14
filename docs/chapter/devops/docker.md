@@ -71,7 +71,7 @@ docker run -d -p 主:容 -v 主:容 --name name image:tag
 docker update --restart=always my_container
 // 容器提交为镜像 
 docker system prune (可选，释放容器的只读空间)
-docker docker commit <container-id/name> <image-name>:<tag>
+docker commit <container-id/name> <image-name>:<tag>
 // 镜像导出为文件
 docker save -o /path/image.tar <image-name>:<tag>
 // 文件导入为镜像
