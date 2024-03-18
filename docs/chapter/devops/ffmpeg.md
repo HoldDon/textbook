@@ -52,6 +52,15 @@ ffmpeg -i input.mp4 -c:v libx264 -c:a aac -crf 23 -preset medium output.mp4
 -vf "drawtext=text='水印':fontsize=24:x=(w-text_w-10):y=(h-text_h-10):fontcolor=white:box=1:boxcolor=black@0.5:fontfile=/path/to/font.ttf"
 ```
 
+## 缩略图
+
+``` bash
+# 多张预览
+ffmpeg -hide_banner -i input.mp4 -an -vf "select='eq(pict_type,PICT_TYPE_I)',thumbnail" -vsync vfr -frames:v 10 output_%03d.jpg
+# X宫格
+ffmpeg -hide_banner -i input.mp4 -an -vf "select='eq(pict_type,PICT_TYPE_I)',thumbnail,scale=iw/2:-1,tile=2x2" -vsync vfr -frames:v 1 output.jpg
+```
+
 ## 直播推流
 
 ```
