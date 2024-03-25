@@ -19,3 +19,11 @@
 }
 </style>
 ```
+居中div  
+``` css
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
