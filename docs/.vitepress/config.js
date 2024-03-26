@@ -14,7 +14,6 @@ export default {
             {
                 text: '技术', items: [
                     { text: "opencv", link: '/chapter/tech/opencv' },
-                    { text: "软考", link: '/chapter/tech/rk' },
                 ]
             },
             {
