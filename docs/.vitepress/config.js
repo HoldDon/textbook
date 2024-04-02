@@ -12,8 +12,9 @@ export default {
                 ]
             },
             {
-                text: '技术', items: [
+                text: '知识', items: [
                     { text: "opencv", link: '/chapter/tech/opencv' },
+                    { text: "线性代数", link: '/chapter/math/linearAlgebra' },
                 ]
             },
             {
@@ -58,4 +59,7 @@ export default {
             ],
         }
     },
+    markdown: {
+        math: true
+    }
 }
