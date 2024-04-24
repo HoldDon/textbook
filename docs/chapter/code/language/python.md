@@ -59,7 +59,8 @@ func(name="CaiXu", age="25", city="NanJing")
 | `any(iterable)` | 迭代对象中任意为真，则输出True |
 | `etattr()\setattr()\hasattr()` | 反射，动态获取和修改对象属性 |
 
-### 字符串格式化  
+### 字符串
+#### 格式化  
 
 - `f"{n:spec}"` 格式规范
   - `f"{n:10}"` 填充到10位
@@ -67,6 +68,18 @@ func(name="CaiXu", age="25", city="NanJing")
   - `f"{n:.2f}"` 设置精度2位
   - `f"{n:,}"`  千分位分隔符
   - 类型和进制 整数`d`，浮点数`f`，科学计数法`e`，二进制`b`，八进制`o`，十六进制`x`
+#### 方法
+- `capitalize` 单词的首字母大写
+- `count` 计算子字符串出现的次数
+- `endswith` 是否以指定的字符串结尾
+- `expandtabs` 将tab转义符替换为空格，默认8个，可指定
+- `find` 找到子字符串第一次出现的位置
+- `rfind` 找到子字符串最后一次出现的位置
+- `isalnum` 是否只有字母和数字
+- `isalpha` 是否只有数字
+- `isdecimal` 是否为数字(0-9)
+- `isdigit` 是否为数字(0-9 和 unicode数值)
+- `isnumeric` 与isdigit类型，但可包含表情数值
 
 ### 表达式
 
