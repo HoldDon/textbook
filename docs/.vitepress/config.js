@@ -14,6 +14,7 @@ export default {
             {
                 text: '知识', items: [
                     { text: "opencv", link: '/chapter/tech/opencv' },
+                    { text: "gis", link: '/chapter/tech/gis' },
                     { text: "线性代数", link: '/chapter/math/linearAlgebra' },
                 ]
             },
