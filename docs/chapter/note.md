@@ -265,3 +265,20 @@ springdoc:
   api-docs:
     path: v3/api-docs # 此为相对路径  若前缀有/ 则为绝对路径
 ```
+
+
+## MyBatis-Plus多数据源使用xml时出现`Invalid bound statement (not found)`
+
+**原因：** 在使用自定义的`@Configuration`注解配置`MybatisSqlSessionFactoryBean`时，`application.yaml`中的配置不起作用，需要指定`MapperLocations`  
+**解决办法：**
+```java{7}
+@Bean("sqlSessionFactory")
+@Primary
+public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) throws Exception {
+    MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
+    sqlSessionFactoryBean.setDataSource(dataSource);
+    MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+    sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/mapper/remote/**/*.xml"));
+    return sqlSessionFactoryBean.getObject();
+}
+```
