@@ -108,3 +108,156 @@ SELECT CONCAT('<svg width="300" height="300" version="1.1" xmlns="http://www.w3.
             CONCAT_WS(' ', 0, CEIL(-1*y_max), CEIL(( x_max-x_min)), CEIL(( y_max-y_min)) ), '"> <path d="', svg, '"></path></svg>') AS "svg"
 FROM p 
 ```
+
+## 代码
+### Java中的使用MyBatis类型映射 
+引用
+```xml
+<dependency>
+    <groupId>com.graphhopper.external</groupId>
+    <artifactId>jackson-datatype-jts</artifactId>
+</dependency>
+```
+核心类型如下;其余如LinearRing、Point、Polygon等参照此写法
+```java
+@MappedTypes(Geometry.class)
+public class GeometryTypeHandler extends AbstractGeometryTypeHandler<Geometry> {
+}
+```
+基类`AbstractGeometryTypeHandler`在不同类型的数据库中有不同的实现。
+#### Mysql
+```java
+package com.hoe.data.jts;
+
+import org.apache.ibatis.type.BaseTypeHandler;
+import org.apache.ibatis.type.JdbcType;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
+import org.locationtech.jts.io.ByteOrderValues;
+import org.locationtech.jts.io.WKBReader;
+import org.locationtech.jts.io.WKBWriter;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+//@MappedTypes(Geometry.class)
+public abstract class AbstractGeometryTypeHandler<T extends Geometry> extends BaseTypeHandler<T> {
+
+    @Override
+    public void setNonNullParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType) throws SQLException {
+        try {
+            ps.setBytes(i,convertGeoToBytes(parameter));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public T getNullableResult(ResultSet rs, String columnName) throws SQLException {
+        // 参考https://dev.mysql.com/doc/refman/8.0/en/gis-data-formats.html#gis-internal-format
+        return convertBytesToGeo(rs.getBytes(columnName));
+    }
+
+    @Override
+    public T getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
+        return convertBytesToGeo(rs.getBytes(columnIndex));
+    }
+
+    @Override
+    public T getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
+        return convertBytesToGeo(cs.getBytes(columnIndex));
+    }
+
+    private T convertBytesToGeo(byte[] bytes) {
+        if (bytes == null) {
+            return null;
+        }
+        try {
+            GeometryFactory geometryFactory= new GeometryFactory(new PrecisionModel(), 4326);
+            byte[] geomBytes = ByteBuffer.allocate(bytes.length - 4).order(ByteOrder.LITTLE_ENDIAN)
+                    .put(bytes, 4, bytes.length - 4).array();
+            Geometry geometry = new WKBReader(geometryFactory).read(geomBytes);
+            return (T) geometry;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private byte[] convertGeoToBytes(Geometry geometry) throws IOException {
+        byte[] geometryBytes = new WKBWriter(2, ByteOrderValues.LITTLE_ENDIAN).write(geometry);
+        byte[] wkb = new byte[geometryBytes.length + 4];
+        ByteOrderValues.putInt(4326, wkb, ByteOrderValues.LITTLE_ENDIAN);
+        System.arraycopy(geometryBytes, 0, wkb, 4, geometryBytes.length);
+        return wkb;
+    }
+}
+```
+
+#### Postgresql
+```java
+package com.hoe.data.jts;
+
+import org.apache.ibatis.type.BaseTypeHandler;
+import org.apache.ibatis.type.JdbcType;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.WKBReader;
+import org.locationtech.jts.io.WKBWriter;
+
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+//@MappedTypes(Geometry.class)
+public abstract class AbstractGeometryTypeHandler<T extends Geometry> extends BaseTypeHandler<T> {
+
+    private final WKBReader wkbReader = new WKBReader();
+    private final WKBWriter wkbWriter = new WKBWriter();
+
+    @Override
+    public void setNonNullParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType) throws SQLException {
+        try {
+            ps.setBytes(i, wkbWriter.write(parameter));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public T getNullableResult(ResultSet rs, String columnName) {
+        try {
+            return (T) wkbReader.read(WKBReader.hexToBytes(rs.getString(columnName)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public T getNullableResult(ResultSet rs, int columnIndex) {
+        try {
+            return (T) wkbReader.read(WKBReader.hexToBytes(rs.getString(columnIndex)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public T getNullableResult(CallableStatement cs, int columnIndex) {
+        try {
+            return (T) wkbReader.read(WKBReader.hexToBytes(cs.getString(columnIndex)));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
+```
