@@ -6,7 +6,7 @@ hero:
     tagline: 与其感慨路难行，不如马上出发
     actions:
       - theme: alt
-        text: 教程
+        text: 算法
         link: /chapter/code/algorithm/leetcode
       - theme: alt
         text: 记录

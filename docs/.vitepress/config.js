@@ -7,7 +7,9 @@ export default {
         nav: [
             {
                 text: '编程', items: [
-                    { text: "教程", link: '/chapter/code/algorithm/leetcode' },
+                    { text: "算法", link: '/chapter/code/algorithm/leetcode' },
+                    { text: "java", link: '/chapter/code/language/java' },
+                    { text: "python", link: '/chapter/code/language/python' },
                     { text: "记录", link: '/chapter/note' }
                 ]
             },
@@ -33,32 +35,32 @@ export default {
                 ]
             },
         ],
-        sidebar: {
-            '/chapter/code/': [
-                {
-                    text: "算法",
-                    items: [
-                        {
-                            text: 'leetcode',
-                            link: "/chapter/code/algorithm/leetcode",
-                        }
-                    ],
-                },
-                {
-                    text: "编程语言",
-                    items: [
-                        {
-                            text: 'java',
-                            link: "/chapter/code/language/java",
-                        },
-                        {
-                            text: 'python',
-                            link: "/chapter/code/language/python",
-                        }
-                    ]
-                }
-            ],
-        }
+        // sidebar: {
+        //     '/chapter/code/': [
+        //         {
+        //             text: "算法",
+        //             items: [
+        //                 {
+        //                     text: 'leetcode',
+        //                     link: "/chapter/code/algorithm/leetcode",
+        //                 }
+        //             ],
+        //         },
+        //         {
+        //             text: "编程语言",
+        //             items: [
+        //                 {
+        //                     text: 'java',
+        //                     link: "/chapter/code/language/java",
+        //                 },
+        //                 {
+        //                     text: 'python',
+        //                     link: "/chapter/code/language/python",
+        //                 }
+        //             ]
+        //         }
+        //     ],
+        // }
     },
     markdown: {
         math: true
