@@ -22,6 +22,48 @@ curl url #只返回res.header
 curl url #返回req.header、res.header、body
 ```
 
+## 运维组件
+### Grafana
+#### Prometheus 
+##### 安装node_exporter  
+1. 下载
+```bash
+wget https://github.com/prometheus/node_exporter/releases/download/vX.X.X/node_exporter-X.X.X.linux-amd64.tar.gz
+```
+2. 解压
+```bash
+tar xvfz node_exporter-X.X.X.linux-amd64.tar.gz
+```
+3. 复制
+```bash
+cd node_exporter-X.X.X.linux-amd64
+sudo cp node_exporter /usr/local/bin
+```
+4. 创建系统服务
+```bash
+sudo nano /etc/systemd/system/node_exporter.service
+```
+加入
+```bash
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=default.target
+```
+5. 启动
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start node_exporter
+sudo systemctl enable node_exporter
+```
+浏览器中，访问`http://localhost:9100/metrics`
+
+
 ## 树莓派
 
 ```bash
