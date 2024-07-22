@@ -81,3 +81,6 @@ docker load -i myimage.tar
 ### 安装英伟达cuda
 
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html
+
+### 镜像源
+在原来的镜像名前加上`docker.m.daocloud.io`，有白名单限制，并非所有镜像都可用。

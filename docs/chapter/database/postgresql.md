@@ -2,8 +2,28 @@
 
 ## 基础知识
 
+### SQL
 
-1. 函数
+#### 继承
+关键字`INHERITS`
+```sql
+CREATE TABLE father (
+  name       text,
+  population real,
+  elevation  int     -- (in ft)
+);
+
+CREATE TABLE child (
+  state      char(2) UNIQUE NOT NULL
+) INHERITS (father);
+```
+
+### 类型
+
+#### JSON
+
+
+### 函数
 
 ```sql
 -- 字符串合并 string || string
@@ -29,13 +49,15 @@ SELECT * FROM pg_available_extensions;
 create index if not exists idx_table_on_column on 'table' using gin ('column' gin_trgm_ops)
 ```
 
-2. 类型转换
+### 类型转换
 ```
 type 'string'
 'string'::type
 CAST ( 'string' AS type )
 ```
-3. `with`关键字，公共表表达式（Common Table Expression，CTE），用于创建可重复使用的临时表。
+### 公共表表达式（Common Table Expression，CTE）
+
+ `with`关键字,用于创建可重复使用的临时表。
 
 ```sql
 WITH expression_name [ (column_name [, ...] ) ] AS (
