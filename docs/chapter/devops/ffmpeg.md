@@ -31,6 +31,11 @@ ffmpeg [选项] [[输入文件选项] -i 输入文件]... {[输出文件选项] 
 -hide_banner 
 ```
 
+### 获取视频信息
+```bash
+ffprobe -v quiet -print_format json -show_format -show_streams test.mp4
+```
+
 ## 截取视频
 ``` bash
 ffmpeg -i input.mp4 -ss 00:10:00 -t 00:01:00 -c:v libx264 -c:a copy output.mp4
