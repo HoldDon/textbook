@@ -103,4 +103,14 @@ func(name="CaiXu", age="25", city="NanJing")
 - datetime
   - `datetime.datetime.now()` 当前日期时间
   - `datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")`  格式化
-  - `datetime(2022, 1, 1) - datetime(2021, 1, 1)` 差值计算
+  - `datetime(2022, 1, 1) - datetime(2021, 1, 1)` 差值计算  
+
+## Django
+### tips
+#### 代理静态资源
+```python
+# urls.py
+urlpatterns = [
+    re_path(r'^files/(?P<path>.*)$', serve, {'document_root': '/home/local/'}),
+]
+```
