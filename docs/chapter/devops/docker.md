@@ -83,4 +83,6 @@ docker load -i myimage.tar
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html
 
 ### 镜像源
-在原来的镜像名前加上`docker.m.daocloud.io`，有白名单限制，并非所有镜像都可用。
+在原来的镜像名前加上源地址，有白名单限制，并非所有镜像都可用。  
+- `docker.m.daocloud.io`
+- `dockerproxy.com`
