@@ -106,11 +106,16 @@ func(name="CaiXu", age="25", city="NanJing")
   - `datetime(2022, 1, 1) - datetime(2021, 1, 1)` 差值计算  
 
 ## Django
-### tips
-#### 代理静态资源
+### 代理静态资源
 ```python
 # urls.py
 urlpatterns = [
     re_path(r'^files/(?P<path>.*)$', serve, {'document_root': '/home/local/'}),
 ]
+```
+## tips
+### sqlalchemy涉及到json
+要指定ensure_ascii为False，不然默认会将所有的非ascii码字符进行转换  
+```python
+create_engine('db://', json_serializer=lambda obj: json.dumps(obj, ensure_ascii=False))
 ```
