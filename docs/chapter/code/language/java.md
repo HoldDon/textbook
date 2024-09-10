@@ -182,3 +182,18 @@ public static ExecutorService newWorkStealingPool() {
 ![ScheduledThreadPoolExecutor](/ScheduledThreadPoolExecutor.png)
 
 
+# jvm
+## 参数
+```bash
+# 最大堆内存 2g
+java -Xmx2g
+# 初始堆内存  512m
+java -Xms512m
+# 初始线程栈 512k
+java -Xss512k
+# 指定垃圾回收器 G1\CMS\ZGC
+java -XX:+UseG1GC -XX:+UseConcMarkSweepGC -XX:+UseZGC
+# 启用字符串去重
+-XX:+UseStringDeduplication
+# 
+```

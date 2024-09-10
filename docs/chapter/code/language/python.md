@@ -9,9 +9,11 @@
 # 3.x https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 
+# 通过文件安装包
+pip3 install path/to/your_package.whl
 # 清华镜像
 python -m pip install --upgrade pip
-pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 ## 基础语法
 ### 环境
