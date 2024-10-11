@@ -80,9 +80,53 @@ docker load -i myimage.tar
 
 ### 安装英伟达cuda
 
-https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html
+[cuda](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html)
+
+### 手动安装
+1. 在 [download.docker.com](https://download.docker.com/linux/) 中选择对应的操作系统/版本/架构
+2. 下载如下文件
+   - `containerd.io_<version>_<arch>`
+   - `docker-ce_<version>_<arch>`
+   - `docker-ce-cli_<version>_<arch>`
+   - `docker-buildx-plugin_<version>_<arch>`
+   - `docker-compose-plugin_<version>_<arch>`
+3. 执行安装
+   ::: code-group
+    ```bash [Debian]
+    sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
+    ./docker-ce_<version>_<arch>.deb \
+    ./docker-ce-cli_<version>_<arch>.deb \
+    ./docker-buildx-plugin_<version>_<arch>.deb \
+    ./docker-compose-plugin_<version>_<arch>.deb
+    ```
+
+    ```bash [Centos]
+    sudo yum install ./containerd.io_<version>_<arch>.rpm \
+    ./docker-ce_<version>_<arch>.rpm \
+    ./docker-ce-cli_<version>_<arch>.rpm \
+    ./docker-buildx-plugin_<version>_<arch>.rpm \
+    ./docker-compose-plugin_<version>_<arch>.rpm
+    ```
+    :::
+4. 执行验证
+    ```bash
+    sudo systemctl start docker
+    or
+    sudo service docker start
+    # test
+    sudo docker run hello-world
+    ```
 
 ### 镜像源
 在原来的镜像名前加上源地址，有白名单限制，并非所有镜像都可用。  
 - `docker.m.daocloud.io`
 - `dockerproxy.com`
+在/etc/docker/daemon.json中加入registry-mirrors，没有文件则新建
+```json
+{
+    "registry-mirrors":[
+        "https://docker.mirrors.ustc.edu.cn", 
+        "https://docker.m.daocloud.io"
+    ]
+}
+```
