@@ -57,6 +57,8 @@ EXPOSE <端口1> [<端口2>...]
 
 ### TIPS
 
+容器内部访问宿主的默认地址为`172.17.0.1`
+
 ```
 // 安装脚本
 curl -fsSL https://get.docker.com -o get-docker.sh
