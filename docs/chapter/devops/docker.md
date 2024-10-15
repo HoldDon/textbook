@@ -119,6 +119,37 @@ docker load -i myimage.tar
     sudo docker run hello-world
     ```
 
+### 迁移目录
+Docker 默认将数据存储在 `/var/lib/docker`。要更改这个目录，可以按照以下步骤进行：
+1. 停止 Docker 服务：
+```bash
+sudo systemctl stop docker
+```
+2. 创建新的目录：
+```bash
+sudo mkdir -p /mnt/docker
+```
+3. 移动现有数据（可选）：
+```bash
+sudo mv /var/lib/docker/* /mnt/docker/
+```
+4. 编辑 Docker 配置文件：  
+在 Docker 的配置文件中指定新的数据目录。通常，这个文件位于 /etc/docker/daemon.json。如果没有这个文件，可以创建.
+```bash
+{
+    "data-root": "/mnt/docker"
+}
+```
+5. 重启 Docker 服务：
+```bash
+sudo systemctl start docker
+```
+6. 验证更改：  
+可以使用以下命令检查 Docker 是否正在使用新的数据目录：
+```bash
+docker info | grep "Docker Root Dir"
+```
+
 ### 镜像源
 在原来的镜像名前加上源地址，有白名单限制，并非所有镜像都可用。  
 - `docker.m.daocloud.io`
