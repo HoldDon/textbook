@@ -10,7 +10,8 @@ export default {
                     { text: "算法", link: '/chapter/code/algorithm/leetcode' },
                     { text: "java", link: '/chapter/code/language/java' },
                     { text: "python", link: '/chapter/code/language/python' },
-                    { text: "记录", link: '/chapter/note' }
+                    { text: "记录", link: '/chapter/note' },
+                    { text: "软考", link: '/chapter/tech/rk' }
                 ]
             },
             {
