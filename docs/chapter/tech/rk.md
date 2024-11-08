@@ -516,7 +516,7 @@
   - 组合-实心菱形箭头
   - 泛化-实线空心三角箭头
   - 实现-虚线空心三角箭头
-- 用例图中用例间的关系 包含（include）、扩展（exclude）、泛化（空心三角）  
+- 用例图中**用例间的关系** 包含（include）、扩展（exclude）、泛化（空心三角）  
 ### 设计模式
 - 代码填入 `implmements` `extends` `abstract` `private` `interface`
 ## 名词术语
