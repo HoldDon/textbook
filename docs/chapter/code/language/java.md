@@ -42,7 +42,16 @@ public class XxxJob {
 ### 其他
 
 1. nacos项目中启动服务出现`parse data from Nacos error,dataId:xxx.yml`错误，要在启动命令上加上编码：`java -Dfile.encoding=utf-8 -jar` 。
-
+2. 在pom文件中引入src同级目录libs下的jar包  
+   ```xml
+    <dependency>
+        <groupId>com.demo</groupId>
+        <artifactId>sdk</artifactId>
+        <version>1.0</version>
+        <scope>system</scope>
+        <systemPath>${pom.basedir}/libs/sdk.jar</systemPath>
+    </dependency>
+   ```
 
 # 多线程
 
