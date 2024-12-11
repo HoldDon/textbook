@@ -109,6 +109,13 @@ SELECT CONCAT('<svg width="300" height="300" version="1.1" xmlns="http://www.w3.
 FROM p 
 ```
 
+## 工具
+### osm2pgsql
+[官网](https://osm2pgsql.org/doc/manual.html) ，将openstreetmap的osm.pbf文件导入到指定的数据库中。  
+```bash
+osm2pgsql -d data -U postgres -H 127.0.0.1 -P 5432 --schema osm --create --slim -G --hstore -C 1000 --multi-geometry -l E:\gis\osm\china.osm.pbf -W
+```
+
 ## 代码
 ### Java中的使用MyBatis类型映射 
 引用
