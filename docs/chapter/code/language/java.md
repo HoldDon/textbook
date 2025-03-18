@@ -2,6 +2,30 @@
 
 # Spring
 ## Spring Boot
+### 数据库连接池保活配置
+```yml
+spring:
+  datasource:
+    url: url=jdbc:mysql://host:3306/db?
+            useSSL=true&
+            autoReconnect=true&     # 启用自动重连（驱动层尝试重新连接）
+            connectTimeout=15000&   # 建立TCP连接的超时（默认30秒，适当缩短但需容忍波动）
+            socketTimeout=30000&    # 单次查询/操作的超时时间（避免因偶发延迟中断）
+            maxReconnects=3&        # 自动重连最大次数（配合autoReconnect）
+            failOverReadOnly=false  # 重连后保持读写模式
+    hikari:
+      maximum-pool-size: 10         # 最大连接数
+      minimum-idle: 5               # 最小空闲数
+      max-lifetime: 600000          # 单个连接最大存活时间（毫秒），需小于 MySQL 的 wait_timeout
+      idle-timeout: 300000          # 空闲连接超时时间（毫秒），超时后连接被释放
+      keepalive-time: 30000         # 保活间隔（毫秒），定期发送测试请求保持连接活跃（HikariCP 4.0.3+）
+      connection-timeout: 30000     # 获取连接超时时间（毫秒）
+      validation-timeout: 5000      # 连接验证超时时间（毫秒）
+      # 连接有效性检测
+      connection-test-query: SELECT 1                       # 检测心跳SQL
+      connection-init-sql: SET SESSION wait_timeout=600     # 初始化时设置会话超时
+      leak-detection-threshold: 5000                        # 连接泄漏检测阈值（毫秒）
+```
 ### 定时任务
 
 ```java
