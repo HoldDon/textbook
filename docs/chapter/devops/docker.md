@@ -33,6 +33,7 @@
 + --dns=IP_ADDRESS  添加 DNS 服务器到容器   --dns-search=DOMAIN： 设定容器的搜索域
 + -u uid:gid 指定用户组
 + -e TZ=Asia/Shanghai  指定时区
++ --cap-add=NET_RAW  允许容器使用原始套接字 可使ping正常运行
 
 ### Dockerfile文件
 
