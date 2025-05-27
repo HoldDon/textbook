@@ -76,6 +76,13 @@ public class XxxJob {
         <systemPath>${pom.basedir}/libs/sdk.jar</systemPath>
     </dependency>
    ```
+3. mybatis开启sql日志  
+    ```yml
+    mybatis:
+        configuration:
+            log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    ```
+
 
 # 多线程
 
