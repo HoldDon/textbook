@@ -66,7 +66,8 @@ server /data --console-address ":9001"
 ```
 + redis
 ```bash
-docker run -d -p 6379:6379 --name redis redis:latest redis-server --requirepass "yourpassw"
+docker run -d -p 6379:6379 --name redis redis:latest redis-server \
+--requirepass "yourpassw"
 ```
 
 
