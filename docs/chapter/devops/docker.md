@@ -1,6 +1,6 @@
 # docker
 
-### 命令
+## 命令
 - pull  拉取镜像
 - images 查看本地镜像
 - search 查找镜像
@@ -17,7 +17,7 @@
 - ps 查看所有运行中的容器 -a：查看所有状态的容器 -l：查看最后一次创建的容器 -s:显示占用空间
 - port 查看容器的端口映射
 
-### run参数
+## run参数
 
 + -i 可与容器进行交互
 + -t 在容器内指定终端
@@ -35,7 +35,7 @@
 + -e TZ=Asia/Shanghai  指定时区
 + --cap-add=NET_RAW  允许容器使用原始套接字 可使ping正常运行
 
-### Dockerfile文件
+## Dockerfile文件
 
 ```docker 
 FROM ubuntu
@@ -56,7 +56,7 @@ EXPOSE <端口1> [<端口2>...]
 **WORKDIR** 指定工作目录  
 **EXPOSE** 声明端口  
 
-### 常用组件
+## 常用组件
 + minio
 ```bash
 docker run -d -p 9000:9000 -p 9001:9001 \
@@ -71,7 +71,7 @@ docker run -d -p 6379:6379 --name redis redis:latest redis-server \
 ```
 
 
-### TIPS
+## TIPS
 
 容器内部访问宿主的默认地址为`172.17.0.1`
 
@@ -96,11 +96,11 @@ docker save -o /path/image.tar <image-name>:<tag>
 docker load -i myimage.tar
 ```
 
-### 安装英伟达cuda
+## 安装英伟达cuda
 
 [cuda](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html)
 
-### 手动安装
+## 手动安装
 1. 在 [download.docker.com](https://download.docker.com/linux/) 中选择对应的操作系统/版本/架构
 2. 下载如下文件
    - `containerd.io_<version>_<arch>`
@@ -135,7 +135,7 @@ docker load -i myimage.tar
     sudo docker run hello-world
     ```
 
-### 迁移目录
+## 迁移目录
 Docker 默认将数据存储在 `/var/lib/docker`。要更改这个目录，可以按照以下步骤进行：
 1. 停止 Docker 服务：
 ```bash
@@ -166,7 +166,7 @@ sudo systemctl start docker
 docker info | grep "Docker Root Dir"
 ```
 
-### 镜像源
+## 镜像源
 在原来的镜像名前加上源地址，有白名单限制，并非所有镜像都可用。  
 - `docker.m.daocloud.io`
 - `dockerproxy.com`
