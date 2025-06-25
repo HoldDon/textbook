@@ -115,7 +115,41 @@ FROM p
 ```bash
 osm2pgsql -d data -U postgres -H 127.0.0.1 -P 5432 --schema osm --create --slim -G --hstore -C 1000 --multi-geometry -l E:\gis\osm\china.osm.pbf -W
 ```
+### qgis
+#### python脚本修改attribute table
+```python
+from qgis.core import QgsProject, QgsVectorLayer
+import re
+def unicode_escape_to_char(escape_str):
+    pattern = re.compile(r'\\U\+([0-9A-Fa-f]{4})')
+    def replace_match(match):
+        hex_str = match.group(1)
+        code_point = int(hex_str, 16)
+        return chr(code_point)
+    return pattern.sub(replace_match, escape_str)
+target_layer = None
+layers = QgsProject.instance().mapLayers().values()
+for layer in layers:
+    if layer.name() == 'points':
+        target_layer = layer
+        break
 
+if target_layer is None:
+    print('not find')
+else:
+    # 开始编辑图层
+    target_layer.startEditing()
+    field_index = target_layer.fields().indexOf('Layer')
+    features = target_layer.getFeatures()
+    for feature in features:
+        original_value = feature['Layer']
+        converted_value = unicode_escape_to_char(original_value)
+        if converted_value != original_value:
+            feature['Layer'] = converted_value
+            target_layer.updateFeature(feature)
+    # 提交所有更改
+    target_layer.commitChanges()
+```
 ## 代码
 ### Java中的使用MyBatis类型映射 
 引用
