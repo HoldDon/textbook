@@ -75,25 +75,27 @@ docker run -d -p 6379:6379 --name redis redis:latest redis-server \
 
 容器内部访问宿主的默认地址为`172.17.0.1`
 
-```
-// 安装脚本
+```bash
+# 安装脚本
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-// 进入容器 权限不足时加上 -u 0
+# 进入容器 权限不足时加上 -u 0
 docker exec -ti container-name /bin/sh
-// 构建本地镜像， -f 可指定Dockerfile文件地址，最后的.为上下文，也可指定路径
+# 构建本地镜像， -f 可指定Dockerfile文件地址，最后的.为上下文，也可指定路径
 docker build -t name:tag .
-// 运行容器
+# 运行容器
 docker run -d -p 主:容 -v 主:容 --name name image:tag
-// 更新容器
+# 更新容器
 docker update --restart=always my_container
-// 容器提交为镜像 
+# 容器提交为镜像 
 docker system prune (可选，释放容器的只读空间)
 docker commit <container-id/name> <image-name>:<tag>
-// 镜像导出为文件
+# 镜像导出为文件
 docker save -o /path/image.tar <image-name>:<tag>
-// 文件导入为镜像
+# 文件导入为镜像
 docker load -i myimage.tar
+# windows的WSL2中默认的宿主host不为172.17.0.1,需要使用如下命令来确认
+ip route show default | awk '/default/ {print $3}'
 ```
 
 ## 安装英伟达cuda

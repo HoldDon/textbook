@@ -45,6 +45,10 @@ SELECT (DATE '2001-02-16', DATE '2001-12-21') OVERLAPS
 VACUUM FULL VERBOSE ANALYZE;
 -- 查看可用扩展
 SELECT * FROM pg_available_extensions;
+-- 查看已安装的扩展
+SELECT * FROM pg_extension;
+-- 安装扩展
+CREATE EXTENSION postgis;
 -- 高效字符串索引
 create index if not exists idx_table_on_column on 'table' using gin ('column' gin_trgm_ops)
 ```

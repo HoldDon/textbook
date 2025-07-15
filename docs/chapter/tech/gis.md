@@ -81,7 +81,11 @@ L.tileLayer(
 
 ## postgis
 ### sql
-将geometry类型的字段直接转换为svg图片，以显示轮廓。  
+#### 常用函数
+```sql
+
+```
+#### 将geometry类型的字段直接转换为svg图片，以显示轮廓。  
 核心做法:
 1. 按最小的x、y坐标负向平移，以实现初始坐标为0
 2. 取宽和高中的较大值来进行放大
@@ -150,6 +154,8 @@ else:
     # 提交所有更改
     target_layer.commitChanges()
 ```
+
+
 ## 代码
 ### Java中的使用MyBatis类型映射 
 引用
