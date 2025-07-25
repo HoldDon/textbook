@@ -1,9 +1,10 @@
 # 记录
 
-## Spring Boot get请求中的特殊字符，报400 bad request
+## Spring Boot get 请求中的特殊字符，报 400 bad request
 
-**原因：** Tomcat升级到9+版本之后，严格执行了`RFC 3986` 和 `RFC 7230`标准，参数中的字符串只能包含字母（a-zA-Z）、数字（0-9）、-_.~4个特殊字符。  
+**原因：** Tomcat 升级到 9+版本之后，严格执行了`RFC 3986` 和 `RFC 7230`标准，参数中的字符串只能包含字母（a-zA-Z）、数字（0-9）、-\_.~4 个特殊字符。  
 **解决办法：**
+
 ```java
 @Bean
 TomcatServletWebServerFactory webServerFactory() {
@@ -16,11 +17,12 @@ TomcatServletWebServerFactory webServerFactory() {
 }
 ```
 
-## Flowable启动时未生成表且报错
+## Flowable 启动时未生成表且报错
 
-**原因：** 数据库链接中缺少nullCatalogMeansCurrent，导致在所有库中检查表。  
-**解决办法：** 设置数据库链接参数nullCatalogMeansCurrent=true，只在当前库中检查。
-另外，如果只需要流程主体，引入单个包即可。  
+**原因：** 数据库链接中缺少 nullCatalogMeansCurrent，导致在所有库中检查表。  
+**解决办法：** 设置数据库链接参数 nullCatalogMeansCurrent=true，只在当前库中检查。
+另外，如果只需要流程主体，引入单个包即可。
+
 ```xml
 <dependency>
     <groupId>org.flowable</groupId>
@@ -29,10 +31,11 @@ TomcatServletWebServerFactory webServerFactory() {
 </dependency>
 ```
 
-## Flowable指定DataSource
+## Flowable 指定 DataSource
+
 **原因：** 有时业务库和流程库不在一起，需要隔离开。  
-**解决办法：** 使用EngineConfigurationConfigurer，更改默认配置。
- 
+**解决办法：** 使用 EngineConfigurationConfigurer，更改默认配置。
+
 ```java
 @Bean
 public EngineConfigurationConfigurer<SpringProcessEngineConfiguration> changeDataSource() {
@@ -48,22 +51,23 @@ public EngineConfigurationConfigurer<SpringProcessEngineConfiguration> changeDat
 }
 ```
 
-## Minio与SpringBoot关于okhttp3的版本问题
-**描述：** 启动时，出现NoClassDefFoundError报错。  
-**原因：** Minio与SpringBoot 所以来的okhttp3版本不一致，导致初始化错误。  
-**解决办法：** 在pom中指定与Minio依赖一直的okhttp3版本号。
+## Minio 与 SpringBoot 关于 okhttp3 的版本问题
 
+**描述：** 启动时，出现 NoClassDefFoundError 报错。  
+**原因：** Minio 与 SpringBoot 所以来的 okhttp3 版本不一致，导致初始化错误。  
+**解决办法：** 在 pom 中指定与 Minio 依赖一直的 okhttp3 版本号。
 
-## GIT-修改.gitignore文件后使之生效
+## GIT-修改.gitignore 文件后使之生效
+
 ```
-git rm -r --cached .  #清除缓存  
-git add . #重新trace file  
-git commit -m "update .gitignore" #提交和注释  
-git push origin master #可选，如果需要同步到remote上的话  
+git rm -r --cached .  #清除缓存
+git add . #重新trace file
+git commit -m "update .gitignore" #提交和注释
+git push origin master #可选，如果需要同步到remote上的话
 ```
 
-## SpringBoot 动态cron任务
- 
+## SpringBoot 动态 cron 任务
+
 ```java
 @Component
 public class DynamicJob implements SchedulingConfigurer {
@@ -126,38 +130,38 @@ public class DynamicJob implements SchedulingConfigurer {
 }
 ```
 
+## bpnmn-js 展现流程图并高亮指定节点
 
-## bpnmn-js展现流程图并高亮指定节点
 执行 yarn add bpmn-js
+
 ```js
-import Viewer from 'bpmn-js/lib/Viewer';
-import ModelingModule from 'bpmn-js/lib/features/modeling';
-import 'bpmn-js/dist/assets/bpmn-js.css';
+import Viewer from "bpmn-js/lib/Viewer";
+import ModelingModule from "bpmn-js/lib/features/modeling";
+import "bpmn-js/dist/assets/bpmn-js.css";
 
 let viewer = new Viewer({
-    container: '.bpmn-container',
-    additionalModules: [ModelingModule]
+  container: ".bpmn-container",
+  additionalModules: [ModelingModule],
 });
 
 try {
-    //bpmn流程xml文件内容
-    const xml = "";
-    const { warnings } = await viewer.importXML(xml);
+  //bpmn流程xml文件内容
+  const xml = "";
+  const { warnings } = await viewer.importXML(xml);
 
-    var elementRegistry = viewer.get('elementRegistry');
-    //获取任务id
-    var shape = elementRegistry.get('userTaskId');
-    let modeling = viewer.get('modeling');
-    modeling.setColor(shape, {
-        stroke: 'blue',
-    });
+  var elementRegistry = viewer.get("elementRegistry");
+  //获取任务id
+  var shape = elementRegistry.get("userTaskId");
+  let modeling = viewer.get("modeling");
+  modeling.setColor(shape, {
+    stroke: "blue",
+  });
 } catch (err) {
-    console.log('error rendering', err);
+  console.log("error rendering", err);
 }
-
 ```
 
-## Mybatis指定多个数据源
+## Mybatis 指定多个数据源
 
 ```java
 /**
@@ -195,13 +199,11 @@ public class XxxConfig {
 }
 ```
 
-
-
-## 事务注解@Transactional嵌套异步@Async注解时，异步失效
+## 事务注解@Transactional 嵌套异步@Async 注解时，异步失效
 
 事务关联的所有方法需要在一个线程下执行，遇到嵌套的异步注解时，异步失效
 
-## jackson-xml处理列表嵌套
+## jackson-xml 处理列表嵌套
 
 ```java
 /**
@@ -211,14 +213,16 @@ public class XxxConfig {
 @JacksonXmlProperty(localName = "DataItem")
 private List<DataItem> dataList;
 ```
-对应  
+
+对应
+
 ```xml
-<DataList>  
-    <DataItem>  
-        <Item1>Item1</Item1>      
-        <Item2>Item1</Item2>         
-    <DataItem>  
-</DataList> 
+<DataList>
+    <DataItem>
+        <Item1>Item1</Item1>
+        <Item2>Item1</Item2>
+    <DataItem>
+</DataList>
 ```
 
 ## 图片压缩工具
@@ -244,21 +248,22 @@ public void compress(){
 
 ```
 
-## Node打包内存溢出
+## Node 打包内存溢出
 
-当执行node命令时，出现`FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory`错误。
+当执行 node 命令时，出现`FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory`错误。
+
 ```bash
 export NODE_OPTIONS=--max_old_space_size=4069
 ```
 
-## YOLOV8的结果进行plot()时出现中文乱码
+## YOLOV8 的结果进行 plot()时出现中文乱码
 
-下载 https://ultralytics.com/assets/Arial.Unicode.ttf 字体   
+下载 https://ultralytics.com/assets/Arial.Unicode.ttf 字体  
 复制到 下列文件夹下
 windows C:\Users\${user}\AppData\Roaming\Ultralytics\
-linux   /root/.config/Ultralytics/
+linux /root/.config/Ultralytics/
 
-## knife4j-openapi接口路径问题
+## knife4j-openapi 接口路径问题
 
 ```yml
 springdoc:
@@ -266,11 +271,11 @@ springdoc:
     path: v3/api-docs # 此为相对路径  若前缀有/ 则为绝对路径
 ```
 
-
-## MyBatis-Plus多数据源使用xml时出现`Invalid bound statement (not found)`
+## MyBatis-Plus 多数据源使用 xml 时出现`Invalid bound statement (not found)`
 
 **原因：** 在使用自定义的`@Configuration`注解配置`MybatisSqlSessionFactoryBean`时，`application.yaml`中的配置不起作用，需要指定`MapperLocations`  
 **解决办法：**
+
 ```java{7}
 @Bean("sqlSessionFactory")
 @Primary
@@ -280,5 +285,39 @@ public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource d
     MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
     sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/mapper/remote/**/*.xml"));
     return sqlSessionFactoryBean.getObject();
+}
+```
+
+## SpringBoot中返回BigDecimal时，移除小数点后末尾多余的0
+
+```java
+
+@Slf4j
+@AutoConfiguration(before = JacksonAutoConfiguration.class)
+public class JacksonConfig {
+
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer customizer() {
+        return builder -> {
+            // 全局配置序列化返回 JSON 处理
+            JavaTimeModule javaTimeModule = new JavaTimeModule();
+            javaTimeModule.addSerializer(BigDecimal.class, new BigDecimalTrim0Serializer());
+            builder.modules(javaTimeModule);
+            builder.timeZone(TimeZone.getDefault());
+            log.info("初始化 jackson 配置");
+        };
+    }
+}
+
+public class BigDecimalTrim0Serializer extends JsonSerializer<BigDecimal> {
+    @Override
+    public void serialize(BigDecimal value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+        if (value == null) {
+            gen.writeNull();
+        } else {
+            // 使用 stripTrailingZeros() 移除末尾的 0
+            gen.writeNumber(value.stripTrailingZeros());
+        }
+    }
 }
 ```
