@@ -37,6 +37,7 @@ export default {
         items: [
           { text: "linux", link: "/chapter/devops/linux" },
           { text: "docker", link: "/chapter/devops/docker" },
+          { text: "apm", link: "/chapter/devops/apm" },
           { text: "ffmpeg", link: "/chapter/devops/ffmpeg" },
           { text: "消息队列", link: "/chapter/devops/mq" },
         ],

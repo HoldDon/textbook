@@ -8,7 +8,8 @@ docker run -d -p 9090:9090 --network monitor_net \
 -v /mnt/e/home/devops/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
 prom/prometheus:v3.5.0
 ```
-### 设置 mysql 的采集器  
+### 采集器  
+#### **mysql-exporter**
 对应的数据库中创建只读账号  
 ```sql
 CREATE USER 'exporter'@'localhost' IDENTIFIED BY 'XXXXXXXX' WITH MAX_USER_CONNECTIONS 3;
@@ -28,6 +29,8 @@ docker run -d --network monitor_net --name=mysqld-exporter \
 -v /mnt/e/home/devops/prometheus/my.cnf:/.my.cnf \
 -p 9104:9104 prom/mysqld-exporter:v0.17.2
 ```
+#### **categraf**
+
 ### 启动nightingale
 ```toml
 [DB]

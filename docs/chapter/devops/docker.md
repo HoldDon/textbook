@@ -59,14 +59,14 @@ EXPOSE <端口1> [<端口2>...]
 ## 常用组件
 + minio
 ```bash
-docker run -d -p 9000:9000 -p 9001:9001 \
+docker run -d --restart=unless-stopped -p 9000:9000 -p 9001:9001 \
 -e "MINIO_ROOT_USER=admin" -e "MINIO_ROOT_PASSWORD=adminpassw" \
 --name minio minio/minio:RELEASE.2025-04-22T22-12-26Z  \
 server /data --console-address ":9001"
 ```
 + redis
 ```bash
-docker run -d -p 6379:6379 --name redis redis:latest redis-server \
+docker run -d --restart=unless-stopped -p 6379:6379 --name redis redis:latest redis-server \
 --requirepass "yourpassw"
 ```
 
