@@ -235,5 +235,6 @@ java -Xss512k
 java -XX:+UseG1GC -XX:+UseConcMarkSweepGC -XX:+UseZGC
 # 启用字符串去重
 -XX:+UseStringDeduplication
-# 
+# 60秒释放未使用的内存
+-XX:ZUncommitDelay=60
 ```
