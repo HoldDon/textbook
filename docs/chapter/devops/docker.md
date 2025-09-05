@@ -69,7 +69,22 @@ server /data --console-address ":9001"
 docker run -d --restart=unless-stopped -p 6379:6379 --name redis redis:latest redis-server \
 --requirepass "yourpassw"
 ```
-
++ docker-compose
+```yml
+#version: '3'
+services:
+  pmcc-baogong-vue:
+    image: nginx:latest
+    container_name: pmcc-baogong-vue
+    ports:
+      - '16080:80'
+    volumes:
+    # 同级目录创建dist\logs\nginx.conf
+      - ./dist:/usr/share/nginx/html/dist
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./logs:/var/log/nginx
+    restart: unless-stopped
+```
 
 ## TIPS
 
@@ -96,6 +111,8 @@ docker save -o /path/image.tar <image-name>:<tag>
 docker load -i myimage.tar
 # windows的WSL2中默认的宿主host不为172.17.0.1,需要使用如下命令来确认
 ip route show default | awk '/default/ {print $3}'
+# 使得docker命令不需要使用root
+sudo usermod -aG docker selfuser
 ```
 
 ## 安装英伟达cuda
