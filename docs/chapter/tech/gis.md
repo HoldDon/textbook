@@ -117,7 +117,20 @@ FROM p
 ### osm2pgsql
 [官网](https://osm2pgsql.org/doc/manual.html) ，将openstreetmap的osm.pbf文件导入到指定的数据库中。  
 ```bash
-osm2pgsql -d data -U postgres -H 127.0.0.1 -P 5432 --schema osm --create --slim -G --hstore -C 1000 --multi-geometry -l E:\gis\osm\china.osm.pbf -W
+osm2pgsql -d data -U postgres -H 127.0.0.1 -P 5432 --schema osm --create --slim -G --hstore -C 1000 --multi-geometry -l E:/gis/osm/china.osm.pbf -W
+```
+
+### osmium-tool 
+[官网](https://osmcode.org/osmium-tool/) ，从osm.pbf文件中过滤、提取出想要的数据。  
+官方仓库不提供安装包，需要手动编译，linux下可直接安装，windows下建议使用wsl。  
+```bash
+sudo apt update
+sudo apt install osmium-tool
+```
+#### 示例
+```bash
+# 指定id过滤所有陇海线的数据
+osmium getid -r china.osm.pbf r284857 -o relation284857.osm.pbf
 ```
 ### qgis
 #### python脚本修改attribute table
