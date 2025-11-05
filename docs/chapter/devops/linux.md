@@ -20,6 +20,10 @@ wget url #下载
 curl url #只返回body
 curl url #只返回res.header
 curl url #返回req.header、res.header、body
+
+# 测试TCP
+sudo apt install netcat-openbsd
+nc ip port
 ```
 
 ## 运维组件
