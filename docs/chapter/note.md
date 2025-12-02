@@ -321,3 +321,18 @@ public class BigDecimalTrim0Serializer extends JsonSerializer<BigDecimal> {
     }
 }
 ```
+## SpringBoot使用tomcat映射本地文件夹，通过nginx代理路径，文件名中包含`[]`字符时出现400错误
+```yml
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      force-request: true
+      force-response: true
+  tomcat:
+    uri-encoding: UTF-8
+    # 不拒绝非法字符（对于特殊文件名可能需要）
+    relaxed-query-chars: '|,{,},[,],^'
+    relaxed-path-chars: '|,{,},[,],^'
+```
