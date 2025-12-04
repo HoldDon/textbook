@@ -336,3 +336,9 @@ server:
     relaxed-query-chars: '|,{,},[,],^'
     relaxed-path-chars: '|,{,},[,],^'
 ```
+
+## maven的多模块项目中打包指定的模块
+```bash
+# 指定打包的模块 -pl指定模块 -am包含相关依赖
+mvn clean package -pl parent-modules/biz-web -am
+```
