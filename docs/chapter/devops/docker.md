@@ -113,6 +113,8 @@ docker load -i myimage.tar
 ip route show default | awk '/default/ {print $3}'
 # 使得docker命令不需要使用root
 sudo usermod -aG docker selfuser
+# 导出docker日志到文件
+docker logs --tail 5000 my_container > logs.txt
 ```
 
 ## 安装英伟达cuda
