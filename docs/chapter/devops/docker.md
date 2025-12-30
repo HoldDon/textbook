@@ -64,6 +64,16 @@ docker run -d --restart=unless-stopped -p 9000:9000 -p 9001:9001 \
 --name minio minio/minio:RELEASE.2025-04-22T22-12-26Z  \
 server /data --console-address ":9001"
 ```
+
++ clickhouse
+```bash
+docker run -d --name clickhouse -p 8123:8123 -p 9000:9000 \
+-e CLICKHOUSE_DB=data -e CLICKHOUSE_USER=data \
+-e CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1 \
+-e CLICKHOUSE_PASSWORD=Data@0512 \
+clickhouse/clickhouse-server:25.11-alpine
+```
+
 + redis
 ```bash
 docker run -d --restart=unless-stopped -p 6379:6379 --name redis redis:latest redis-server \
