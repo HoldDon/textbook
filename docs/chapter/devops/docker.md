@@ -200,6 +200,7 @@ docker info | grep "Docker Root Dir"
 ## 镜像源
 在原来的镜像名前加上源地址，有白名单限制，并非所有镜像都可用。  
 - `docker.m.daocloud.io`
+- `docker.1ms.run`
 - `dockerproxy.com`
 在/etc/docker/daemon.json中加入registry-mirrors，没有文件则新建
 ```json

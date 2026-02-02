@@ -342,3 +342,32 @@ server:
 # 指定打包的模块 -pl指定模块 -am包含相关依赖
 mvn clean package -pl parent-modules/biz-web -am
 ```
+
+
+## netty中解决HJ212的粘包拆包问题
+```java
+ServerBootstrap serverBootstrap = new ServerBootstrap();
+
+serverBootstrap.group(bossGroup, workerGroup)
+        .channel(NioServerSocketChannel.class)
+        .childHandler(new ChannelInitializer<SocketChannel>() {
+            @Override
+            protected void initChannel(SocketChannel ch) throws Exception {
+                ByteBuf delimiterCrlf = Unpooled.copiedBuffer("\r\n", StandardCharsets.UTF_8);
+                ByteBuf delimiterLf = Unpooled.copiedBuffer("\n", StandardCharsets.UTF_8);
+                ByteBuf[] delimiters = new ByteBuf[]{delimiterCrlf, delimiterLf};
+                DelimiterBasedFrameDecoder frameDecoder = new DelimiterBasedFrameDecoder(8192, delimiters);
+                ch.pipeline()
+                        .addLast(frameDecoder)
+                        .addLast(new StringDecoder(StandardCharsets.UTF_8))
+                        .addLast(new StringEncoder(StandardCharsets.UTF_8))
+                        .addLast(hexDumpHandler);
+            }
+        })
+        .option(ChannelOption.SO_BACKLOG, 128)
+        .childOption(ChannelOption.SO_KEEPALIVE, true)
+        .childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000);
+
+ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+channelFuture.channel().closeFuture().sync();
+```
