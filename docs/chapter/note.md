@@ -371,3 +371,34 @@ serverBootstrap.group(bossGroup, workerGroup)
 ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
 channelFuture.channel().closeFuture().sync();
 ```
+
+## hj212的CRC16校验JAVA实现
+
+```java
+/**
+ * 计算字符串的 ANSI CRC16 校验码（返回 4 位十六进制大写字符串）
+ * @param input 要计算的字符串
+ * @return CRC16 校验码，如 "3A2B"
+ */
+public static String crc16(String input) {
+    // 默认使用系统编码，可改为 UTF-8: input.getBytes(StandardCharsets.UTF_8)
+    byte[] pushMsg = input.getBytes(StandardCharsets.UTF_8);
+    int usDataLen = pushMsg.length;
+    int i, j;
+    int crc_reg, check;
+    // 初始值
+    crc_reg = 0xFFFF;
+    for (i = 0; i < usDataLen; i++) {
+        crc_reg = (crc_reg >> 8) ^ (pushMsg[i] & 0xFF);
+
+        for (j = 0; j < 8; j++) {
+            check = crc_reg & 0x0001;
+            crc_reg >>= 1;
+            if (check == 0x0001) {
+                crc_reg ^= 0xA001;
+            }
+        }
+    }
+    return String.format("%04X", crc_reg);
+}
+```
