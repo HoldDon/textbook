@@ -24,6 +24,16 @@ curl url #返回req.header、res.header、body
 # 测试TCP
 sudo apt install netcat-openbsd
 nc ip port
+
+# 切片合并大文件
+# 按每 100MB 切割，默认前缀为 x
+split -b 100M large_file.iso
+# 指定前缀为 part_，使用数字后缀
+split -b 200M -d large_file.iso part_
+# 均分为10份 使用数字后缀
+split -n 10 -d large_file.iso part_
+# 合并
+cat part_* > large_file.iso
 ```
 
 ## 运维组件
