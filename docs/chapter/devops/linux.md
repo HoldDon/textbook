@@ -36,6 +36,54 @@ split -n 10 -d large_file.iso part_
 cat part_* > large_file.iso
 ```
 
+## 部署操作
+### 挂载磁盘
+以`/dev/vdb`挂载到`/mnt/data`为例，使用GPT格式  
+#### 第一步 确认磁盘状态 
+确认`/dev/vdb`的空间是空闲的
+```bash
+lsblk
+```
+#### 第二步 使用`parted`创建分区
+```bash
+# 1. 进入 parted 交互模式，操作 /dev/vdb 磁盘
+sudo parted /dev/vdb
+```
+进入提示符后，依次输入如下命令
+```bash
+# 2. (parted) 提示符后，创建 GPT 分区表
+# 警告：这会清除磁盘上已有的分区和数据，请确保这是你需要的操作
+(parted) mklabel gpt
+# 3. 创建一个主分区，使用磁盘的 0% 到 100% 全部空间
+(parted) mkpart primary 0% 100%
+# 4. 退出 parted 工具
+(parted) quit
+```
+#### 第三步 检查新分区
+操作完成后，再用 lsblk 看一下，应该就能看到一个 5TB 的 vdb1 分区了。
+#### 第四步 格式化并挂载
+```bash
+# 1. 格式化为 ext4 文件系统
+sudo mkfs.ext4 /dev/vdb1
+# 2. 创建挂载点（挂载目录）
+sudo mkdir -p /mnt/data
+# 3. 临时挂载
+sudo mount /dev/vdb1 /mnt/data
+# 4. 查看是否挂载成功
+df -h
+```
+#### 第五步 设置开机启动
+```bash
+# 1. 获取分区的UUID
+sudo blkid /dev/vdb1
+# 2. 编辑fstab文件
+sudo nano /etc/fstab
+# 3. 在文件末尾添加一行,将上述得到UUID填入
+UUID=<你的UUID> /mnt/data ext4 defaults 0 2
+# 4. 测试配置是否正确
+sudo mount -a
+```
+
 ## 运维组件
 ### Grafana
 #### Prometheus 

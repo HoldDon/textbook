@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vitepress": "^1.2.3"
+    "vitepress": "^1.6.4"
   },
   "devDependencies": {
     "markdown-it-mathjax3": "^4.3.2"

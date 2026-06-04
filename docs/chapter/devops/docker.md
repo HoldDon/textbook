@@ -79,6 +79,43 @@ clickhouse/clickhouse-server:25.11-alpine
 docker run -d --restart=unless-stopped -p 6379:6379 --name redis redis:latest redis-server \
 --requirepass "yourpassw"
 ```
+
++ iotdb
+```yml
+version: "3.8"
+
+services:
+  iotdb:
+    image: docker.m.daocloud.io/apache/iotdb:2.0.8-standalone
+    hostname: iotdb
+    container_name: iotdb
+    restart: unless-stopped
+    ports:
+      - "6667:6667"
+      - "6883:1883"
+    environment:
+      - cn_internal_address=iotdb
+      - cn_internal_port=10710
+      - cn_consensus_port=10720
+      - cn_seed_config_node=iotdb:10710
+      - dn_rpc_address=iotdb
+      - dn_internal_address=iotdb
+      - dn_rpc_port=6667
+      - enable_mqtt_service=true
+      - dn_internal_port=10730
+      - dn_mpp_data_exchange_port=10740
+      - dn_schema_region_consensus_port=10750
+      - dn_data_region_consensus_port=10760
+      - dn_seed_config_node=iotdb:10710
+    volumes:
+      - /mnt/c/Codes/mount/iotdb/iotdb_data:/iotdb/data
+      - /mnt/c/Codes/mount/iotdb/iotdb_logs:/iotdb/logs
+    ulimits:
+      nofile:
+        soft: 65536     
+        hard: 65536
+```
+
 + docker-compose
 ```yml
 #version: '3'
